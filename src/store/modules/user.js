@@ -1,6 +1,5 @@
-import firebase from 'firebase/app'
-import 'firebase/auth'
-import { currentUser } from '@/constants/config'
+import axios from 'axios'
+import VueJwtDecode from 'vue-jwt-decode'
 
 export default {
   state: {
@@ -38,33 +37,26 @@ export default {
     }
   },
   actions: {
-
     login ({ commit }, payload) {
       commit('clearError')
       commit('setProcessing', true)
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(payload.email, payload.password)
-        .then(
-          user => {
-            const item = { uid: user.user.uid, ...currentUser }
-            localStorage.setItem('user', JSON.stringify(item))
-            commit('setUser', { uid: user.user.uid, ...currentUser })
-          },
-          err => {
-            localStorage.removeItem('user')
-            commit('setError', err.message)
-          }
-        )
+      axios
+        .post('/user/login', { username: payload.username, password: payload.password })
+        .then(({ data }) => {
+          const { AuthData: user } = VueJwtDecode.decode(data.AccessToken)
+
+          const item = { ...user }
+          localStorage.setItem('user', JSON.stringify(item))
+          commit('setUser', { ...user })
+        })
+        .catch((error) => {
+          localStorage.removeItem('user')
+          commit('setError', error.message)
+        })
     },
     signOut ({ commit }) {
-      firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          localStorage.removeItem('user')
-          commit('setLogout')
-        }, _error => {})
+      localStorage.removeItem('user')
+      commit('setLogout')
     }
   }
 }

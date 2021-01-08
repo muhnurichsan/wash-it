@@ -28,6 +28,10 @@ import 'v-calendar/lib/v-calendar.min.css'
 import VueScrollTo from 'vue-scrollto'
 import firebase from 'firebase/app'
 import 'firebase/auth'
+// Axios
+import axios from 'axios'
+window.axios = axios
+axios.defaults.baseURL = process.env.VUE_APP_API_BASE_URL
 
 Vue.use(BootstrapVue)
 Vue.use(VueI18n)

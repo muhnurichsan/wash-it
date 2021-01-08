@@ -97,11 +97,9 @@ const mutations = {
   addMenuClassname (state, payload) {
     const { classname, currentClasses } = payload
 
-    const nextClasses =
-      !currentClasses.indexOf(classname) > -1
-        ? currentClasses + ' ' + classname
-        : currentClasses
-    state.menuType = nextClasses
+    state.menuType = !currentClasses.indexOf(classname) > -1
+      ? currentClasses + ' ' + classname
+      : currentClasses
   },
   changeSideMenuForMobile (state, strCurrentClasses) {
     const currentClasses = strCurrentClasses

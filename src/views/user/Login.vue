@@ -13,8 +13,8 @@
             <h6 class="mb-4">{{ $t('user.login-title')}}</h6>
             <b-form @submit.prevent="formSubmit">
               <label class="form-group has-float-label mb-4">
-                <input type="email" class="form-control" v-model="email">
-                <span>{{ $t('user.email') }}</span>
+                <input type="text" class="form-control" v-model="username">
+                <span>{{ $t('user.username') }}</span>
               </label>
               <label class="form-group has-float-label mb-4">
                 <input type="password" class="form-control" v-model="password">
@@ -36,7 +36,7 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   data () {
     return {
-      email: '',
+      username: '',
       password: ''
     }
   },
@@ -46,14 +46,12 @@ export default {
   methods: {
     ...mapActions(['login']),
     formSubmit () {
-      this.email = 'demo@gogo.com'
-      this.password = 'gogo123'
-      this.login({ email: this.email, password: this.password })
+      this.login({ username: this.username, password: this.password })
     }
   },
   watch: {
     currentUser (val) {
-      if (val && val.uid && val.uid.length > 0) {
+      if (val && val.id) {
         setTimeout(() => {
           this.$router.push('/')
         }, 500)

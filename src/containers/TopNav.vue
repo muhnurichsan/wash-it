@@ -48,13 +48,6 @@
           >{{l.name}}</b-dropdown-item>
         </b-dropdown>
       </div>
-      <div class="position-relative d-none d-none d-lg-inline-block">
-        <a
-          class="btn btn-outline-primary btn-sm ml-2"
-          target="_top"
-          :href="buyUrl"
-        >{{$t('user.buy')}}</a>
-      </div>
     </div>
     <router-link class="navbar-logo" tag="a" to="/app">
       <span class="logo d-none d-xs-block"></span>
@@ -171,9 +164,9 @@
           no-caret
         >
           <template slot="button-content">
-            <span class="name mr-1">{{currentUser.title}}</span>
+            <span class="name mr-1">{{currentUser.name}}</span>
             <span>
-              <img :alt="currentUser.title" :src="currentUser.img" />
+              <img :alt="currentUser.name" :src="'/assets/img/profile-pic-l.jpg'" />
             </span>
           </template>
           <b-dropdown-item>Account</b-dropdown-item>
@@ -197,7 +190,6 @@ import {
   searchPath,
   menuHiddenBreakpoint,
   localeOptions,
-  buyUrl,
   defaultColor
 } from '@/constants/config'
 import { getDirection, setDirection } from '@/utils'
@@ -217,7 +209,6 @@ export default {
       menuHiddenBreakpoint,
       searchPath,
       localeOptions,
-      buyUrl,
       notifications,
       isDarkActive: false
     }
