@@ -26,7 +26,6 @@ import lineClamp from 'vue-line-clamp'
 import VCalendar from 'v-calendar'
 import 'v-calendar/lib/v-calendar.min.css'
 import VueScrollTo from 'vue-scrollto'
-import 'firebase/auth'
 // Axios
 import axios from 'axios'
 window.axios = axios
