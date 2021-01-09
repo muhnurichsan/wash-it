@@ -6,7 +6,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "heroku-postbuild": "vue-cli-service build --prod"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -84,5 +85,9 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "engines": {
+    "node": "12.x",
+    "yarn": "1.x"
+  }
 }
