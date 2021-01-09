@@ -1,6 +1,7 @@
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
+  mode: process.env.VUE_APP_MODE,
   pages: {
     index: {
       entry: 'src/index.js',
