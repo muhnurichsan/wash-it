@@ -55,58 +55,7 @@
     </router-link>
 
     <div class="navbar-right">
-      <div class="d-none d-md-inline-block align-middle mr-3">
-        <switches
-          id="tool-mode-switch"
-          v-model="isDarkActive"
-          theme="custom"
-          class="vue-switcher-small"
-          color="primary"
-        ></switches>
-        <b-tooltip target="tool-mode-switch" placement="left" title="Dark Mode"></b-tooltip>
-      </div>
       <div class="header-icons d-inline-block align-middle">
-        <div class="position-relative d-none d-sm-inline-block">
-          <b-dropdown
-            variant="empty"
-            size="sm"
-            right
-            toggle-class="header-icon"
-            menu-class="position-absolute mt-3 iconMenuDropdown"
-            no-caret
-          >
-            <template slot="button-content">
-              <i class="simple-icon-grid" />
-            </template>
-            <div>
-              <router-link tag="a" to="/app/dashboards/default" class="icon-menu-item">
-                <i class="iconsminds-shop-4 d-block" />
-                {{$t('menu.dashboards')}}
-              </router-link>
-              <router-link tag="a" to="/app/ui" class="icon-menu-item">
-                <i class="iconsminds-pantone d-block" />
-                {{$t('menu.ui')}}
-              </router-link>
-              <router-link tag="a" to="/app/ui/charts" class="icon-menu-item">
-                <i class="iconsminds-bar-chart-4 d-block" />
-                {{$t('menu.charts')}}
-              </router-link>
-              <router-link tag="a" to="/app/applications/chat" class="icon-menu-item">
-                <i class="iconsminds-speach-bubble d-block" />
-                {{$t('menu.chat')}}
-              </router-link>
-              <router-link tag="a" to="/app/applications/survey" class="icon-menu-item">
-                <i class="iconsminds-formula d-block" />
-                {{$t('menu.survey')}}
-              </router-link>
-              <router-link tag="a" to="/app/applications/todo" class="icon-menu-item">
-                <i class="iconsminds-check d-block" />
-                {{$t('menu.todo')}}
-              </router-link>
-            </div>
-          </b-dropdown>
-        </div>
-
         <div class="position-relative d-inline-block">
           <b-dropdown
             variant="empty"
@@ -183,21 +132,18 @@
 <script>
 import { mapGetters, mapMutations, mapActions } from 'vuex'
 import { MenuIcon, MobileMenuIcon } from '@/components/Svg'
-import Switches from 'vue-switches'
 
 import notifications from '@/data/notifications'
 import {
   searchPath,
   menuHiddenBreakpoint,
-  localeOptions,
-  defaultColor
+  localeOptions
 } from '@/constants/config'
 import { getDirection, setDirection } from '@/utils'
 export default {
   components: {
     MenuIcon,
-    MobileMenuIcon,
-    Switches
+    MobileMenuIcon
   },
   data () {
     return {
@@ -209,8 +155,7 @@ export default {
       menuHiddenBreakpoint,
       searchPath,
       localeOptions,
-      notifications,
-      isDarkActive: false
+      notifications
     }
   },
   methods: {
@@ -280,11 +225,6 @@ export default {
       }
       this.fullScreen = !isInFullScreen
     },
-    getThemeColor () {
-      return localStorage.getItem('themeColor')
-        ? localStorage.getItem('themeColor')
-        : defaultColor
-    },
     isInFullScreen () {
       return (
         (document.fullscreenElement && document.fullscreenElement !== null) ||
@@ -306,31 +246,10 @@ export default {
   beforeDestroy () {
     document.removeEventListener('click', this.handleDocumentforMobileSearch)
   },
-  created () {
-    const color = this.getThemeColor()
-    this.isDarkActive = color.indexOf('dark') > -1
-  },
   watch: {
     '$i18n.locale' (to, from) {
       if (from !== to) {
         this.$router.go(this.$route.path)
-      }
-    },
-    isDarkActive (val) {
-      let color = this.getThemeColor()
-      let isChange = false
-      if (val && color.indexOf('light') > -1) {
-        isChange = true
-        color = color.replace('light', 'dark')
-      } else if (!val && color.indexOf('dark') > -1) {
-        isChange = true
-        color = color.replace('dark', 'light')
-      }
-      if (isChange) {
-        localStorage.setItem('themeColor', color)
-        setTimeout(() => {
-          window.location.reload()
-        }, 500)
       }
     },
     isMobileSearch (val) {

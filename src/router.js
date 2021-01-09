@@ -7,29 +7,33 @@ Vue.use(Router)
 const routes = [
   {
     path: '/',
-    component: () => import(/* webpackChunkName: "app" */ './views/app'),
-    redirect: '/app/piaf',
+    component: () => import('./views/app'),
+    redirect: '/app',
     beforeEnter: AuthRequired,
     children: [
+      // {
+      //   path: 'app/piaf',
+      //   component: () => import('./views/app/piaf'),
+      //   redirect: '/app/piaf/start',
+      //   children: [
+      //     { path: 'start', component: () => import('./views/app/piaf/Start') }
+      //   ]
+      // }
       {
-        path: 'app/piaf',
-        component: () => import(/* webpackChunkName: "piaf" */ './views/app/piaf'),
-        redirect: '/app/piaf/start',
+        // IsAdmin
+        path: 'app',
+        component: () => import('./views/app/admin/index'),
+        redirect: '/admin/dashboard',
         children: [
-          { path: 'start', component: () => import(/* webpackChunkName: "piaf" */ './views/app/piaf/Start') }
+          {
+            path: '/admin/dashboard',
+            component: () => import('./views/app/admin/Dashboard')
+          },
+          {
+            path: '/admin/transaction',
+            component: () => import('./views/app/admin/Transaction')
+          }
         ]
-      },
-      {
-        path: 'app/second-menu',
-        component: () => import(/* webpackChunkName: "second-menu" */ './views/app/secondMenu'),
-        redirect: '/app/second-menu/second',
-        children: [
-          { path: 'second', component: () => import(/* webpackChunkName: "second-menu" */ './views/app/secondMenu/Second') }
-        ]
-      },
-      {
-        path: 'app/single',
-        component: () => import(/* webpackChunkName: "single" */ './views/app/single')
       }
     ]
   },

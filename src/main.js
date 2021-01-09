@@ -8,9 +8,9 @@ import router from './router'
 import { store } from './store'
 // Multi Language Add
 import en from './locales/en.json'
-import es from './locales/es.json'
+import id from './locales/id.json'
 import VueI18n from 'vue-i18n'
-import { defaultLocale, localeOptions, firebaseConfig } from '@/constants/config'
+import { defaultLocale, localeOptions } from '@/constants/config'
 // Notification Component Add
 import Notifications from '@/components/Common/Notification'
 // Breadcrumb Component Add
@@ -26,7 +26,6 @@ import lineClamp from 'vue-line-clamp'
 import VCalendar from 'v-calendar'
 import 'v-calendar/lib/v-calendar.min.css'
 import VueScrollTo from 'vue-scrollto'
-import firebase from 'firebase/app'
 import 'firebase/auth'
 // Axios
 import axios from 'axios'
@@ -36,7 +35,7 @@ axios.defaults.baseURL = process.env.VUE_APP_API_BASE_URL
 Vue.use(BootstrapVue)
 Vue.use(VueI18n)
 
-const messages = { en: en, es: es }
+const messages = { en: en, id: id }
 const locale = (localStorage.getItem('currentLanguage') && localeOptions.filter(x => x.id === localStorage.getItem('currentLanguage')).length > 0) ? localStorage.getItem('currentLanguage') : defaultLocale
 const i18n = new VueI18n({
   locale: locale,
@@ -66,7 +65,6 @@ Vue.use(VCalendar, {
   popoverDirection: 'bottom'
 })
 Vue.use(VueScrollTo)
-firebase.initializeApp(firebaseConfig)
 
 export default new Vue({
   el: '#app',

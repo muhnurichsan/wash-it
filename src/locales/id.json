@@ -1,0 +1,49 @@
+{
+  "general": {
+    "copyright": "Piaf Vue © 2018 All Rights Reserved."
+  },
+  "user": {
+    "login-title": "Masuk",
+    "register": "Daftar",
+    "forgot-password": "Lupa Kata Sandi",
+    "email": "E-mail",
+    "password": "Kata Sandi",
+    "forgot-password-question": "Lupa Kata Sandi?",
+    "fullname": "Nama Lengkap",
+    "login-button": "MASUK",
+    "register-button": "DAFTAR",
+    "reset-password-button": "RESET",
+    "buy": "Beli",
+    "username": "Nama Pengguna"
+  },
+  "menu": {
+    "admin": "Admin",
+    "app": "App",
+    "piaf": "Piaf",
+    "dashboard": "Dasbor",
+    "transaction": "Transaksi",
+    "second-menu": "Second Menu",
+    "second": "Second",
+    "start": "Start",
+    "single": "Single",
+    "pages": "Pages",
+    "charts": "Charts",
+    "search": "Cari",
+    "login": "Masuk",
+    "register": "Daftar",
+    "forgot-password": "Lupa Kata Sandi",
+    "error": "Error",
+    "applications": "Applications",
+    "todo": "To-do List",
+    "library": "Library",
+    "survey": "Survei",
+    "chat": "Chat",
+    "ui": "UI"
+  },
+  "pages": {
+    "magic-is-in-the-details": "MAGIC IS IN THE DETAILS",
+    "error-title": "Maaf... Sepertinya telah terjadi kesalahan!",
+    "error-code": "Kode Error",
+    "go-back-home": "Kembali Ke Halaman Utama"
+  }
+}

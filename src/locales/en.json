@@ -17,9 +17,11 @@
     "username": "Username"
   },
   "menu": {
+    "admin": "Admin",
     "app": "Home",
     "piaf": "Piaf",
-    "dashboards": "Dashboards",
+    "dashboard": "Dashboard",
+    "transaction": "Transaction",
     "second-menu": "Second Menu",
     "second": "Second",
     "start": "Start",

@@ -1,4 +1,3 @@
-
 <template>
   <div
     class="sidebar"
@@ -12,31 +11,37 @@
         :settings="{ suppressScrollX: true, wheelPropagation: false }"
       >
         <ul class="list-unstyled">
-          <li :class="{ active : selectedParentMenu==='piaf' }">
-            <a @click.prevent="openSubMenu($event,'piaf')" href="#piaf">
-              <i class="iconsminds-shop"></i>
-              {{ $t("menu.piaf") }}
-            </a>
+          <li :class="{ active : selectedParentMenu === 'dashboard'}">
+            <router-link :class="{ active : selectedParentMenu === 'dashboard' }"
+                         @click.native="changeSelectedParentHasNoSubmenu('dashboard')" to="/admin/dashboard" tag="li">
+              <a><i class="iconsminds-dashboard"></i> {{ $t("menu.dashboard") }}</a>
+            </router-link>
           </li>
+          <li :class="{ active : selectedParentMenu === 'transaction'}">
+            <router-link :class="{ active : selectedParentMenu === 'transaction' }"
+                         @click.native="changeSelectedParentHasNoSubmenu('transaction')" to="/admin/transaction" tag="li">
+              <a><i class="iconsminds-cash-register-2"></i> {{ $t("menu.transaction") }}</a>
+            </router-link>
+          </li>
+          <!--          <li :class="{ active : selectedParentMenu === 'piaf' }">-->
+          <!--            <a @click.prevent="openSubMenu($event,'piaf')" href="#piaf">-->
+          <!--              <i class="iconsminds-shop"></i>-->
+          <!--              {{ $t("menu.piaf") }}-->
+          <!--            </a>-->
+          <!--          </li>-->
 
-          <li :class="{ active : selectedParentMenu==='second-menu' }">
-            <a @click.prevent="openSubMenu($event,'second-menu')" href="#second-menu">
-              <i class="iconsminds-chemical"></i>
-              {{ $t("menu.second-menu") }}
-            </a>
-          </li>
+          <!--          <li :class="{ active : selectedParentMenu==='pages'}">-->
+          <!--            <a @click.prevent="openSubMenu($event,'pages')" href="#pages">-->
+          <!--              <i class="iconsminds-digital-drawing"></i>-->
+          <!--              {{ $t("menu.pages") }}-->
+          <!--            </a>-->
+          <!--          </li>-->
 
-          <li :class="{ active : selectedParentMenu==='pages'}">
-            <a @click.prevent="openSubMenu($event,'pages')" href="#pages">
-              <i class="iconsminds-digital-drawing"></i>
-              {{ $t("menu.pages") }}
-            </a>
-          </li>
-          <li :class="{ active : selectedParentMenu==='single'}">
-             <router-link :class="{ active : selectedParentMenu==='single' }" @click.native="changeSelectedParentHasNoSubmenu('single')" to="/app/single" tag="li">
-                <a><i class="iconsminds-three-arrow-fork"></i>  {{ $t("menu.single") }}</a>
-              </router-link>
-          </li>
+          <!--          <li :class="{ active : selectedParentMenu==='single'}">-->
+          <!--             <router-link :class="{ active : selectedParentMenu==='single' }" @click.native="changeSelectedParentHasNoSubmenu('single')" to="/app/single" tag="li">-->
+          <!--                <a><i class="iconsminds-three-arrow-fork"></i>  {{ $t("menu.single") }}</a>-->
+          <!--              </router-link>-->
+          <!--          </li>-->
         </ul>
       </vue-perfect-scrollbar>
     </div>
@@ -121,7 +126,6 @@ export default {
     document.removeEventListener('click', this.returnSelectedMenu)
     window.removeEventListener('resize', this.handleWindowResize)
   },
-
   methods: {
     ...mapMutations([
       'changeSideMenuStatus',

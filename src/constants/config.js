@@ -1,5 +1,5 @@
-export const defaultMenuType = 'menu-default' // 'menu-default', 'menu-sub-hidden', 'menu-hidden';
-export const defaultStartPath = '/app/dashboards/default'
+export const defaultMenuType = 'menu-sub-hidden' // 'menu-default', 'menu-sub-hidden', 'menu-hidden';
+export const defaultStartPath = '/app'
 export const searchPath = '/app/pages/search'
 export const buyUrl = 'https://1.envato.market/nEyZa'
 
@@ -9,9 +9,8 @@ export const menuHiddenBreakpoint = 768
 export const defaultLocale = 'en'
 export const defaultDirection = 'ltr'
 export const localeOptions = [
-  { id: 'en', name: 'English LTR', direction: 'ltr' },
-  { id: 'es', name: 'Español', direction: 'ltr' },
-  { id: 'enrtl', name: 'English RTL', direction: 'rtl' }
+  { id: 'en', name: 'English', direction: 'ltr' },
+  { id: 'id', name: 'Indonesia', direction: 'ltr' }
 ]
 
 export const firebaseConfig = {
@@ -32,7 +31,7 @@ export const currentUser = {
   date: 'Last seen today 15:24'
 }
 
-export const defaultColor = 'light.orange'
+export const defaultColor = 'light.blue'
 export const colors = [
   'light.purple',
   'dark.purple',
