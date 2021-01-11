@@ -16,6 +16,7 @@ import BannerShayna from '@/components/Banner.vue'
 import InstaShayna from '@/components/Insta.vue'
 import PartnerShayna from '@/components/Partner.vue'
 import Footer from '@/components/Footer.vue'
+
 export default {
   name: 'Home',
   components: {

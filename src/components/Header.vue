@@ -1,6 +1,6 @@
 <template>
   <!-- Header Section Begin -->
-  <header class="header-section">
+  <section class="header-section">
     <div class="header-top">
       <div class="container">
         <div class="ht-left">
@@ -103,7 +103,7 @@
         </div>
       </div>
     </div>
-  </header>
+  </section>
   <!-- Header End -->
 </template>
 
