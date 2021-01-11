@@ -52,6 +52,7 @@
 </template>
 <script>
 import { mapActions } from 'vuex'
+import axios from 'axios'
 
 export default {
   data () {
@@ -67,16 +68,26 @@ export default {
   },
   methods: {
     ...mapActions(['register']),
-    async formSubmit () {
-      try {
-        const res = await this.register(...this.formData)
-        if (res) {
-          this.$notify('success', 'Registration success. Please login')
-          await this.$router.push('/')
-        }
-      } catch (error) {
-        this.$notify('error', 'Something bad happened', error)
-      }
+    formSubmit () {
+      const { name, username, email, password } = this.formData
+      axios
+        .post('/user/register', { name, username, email, password, isAdmin: this.formData.isAdmin === '' ? 0 : 1 })
+        .then(({ data, status }) => {
+          if (status === 200) {
+            this.$notify('success', 'Success', 'Your registrations has been successfully completed', { duration: 5000 })
+            this.$router.push('/auth/login')
+            this.formData = {
+              name: '',
+              email: '',
+              password: '',
+              username: '',
+              isAdmin: ''
+            }
+          }
+        })
+        .catch((error) => {
+          this.$notify('error', 'Something bad happened', error, { duration: 5000 })
+        })
     }
   }
 }

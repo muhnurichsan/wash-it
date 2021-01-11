@@ -113,7 +113,7 @@
           no-caret
         >
           <template slot="button-content">
-            <span class="name mr-1">{{currentUser.name}}</span>
+            <span class="name mr-1">{{currentUser !== null ? currentUser.name : ''}}</span>
             <span>
               <img :alt="currentUser.name" :src="'/assets/img/profile-pic-l.jpg'" />
             </span>

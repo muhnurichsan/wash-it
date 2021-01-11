@@ -101,7 +101,6 @@
 
 <script>
 export default {
-  name: 'RelatedShayna'
 }
 </script>
 

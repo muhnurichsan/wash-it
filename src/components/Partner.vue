@@ -45,7 +45,6 @@
 import carousel from 'vue-owl-carousel'
 
 export default {
-  name: 'PartnerShayna',
   components: {
     carousel
   }

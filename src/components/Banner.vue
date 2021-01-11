@@ -46,7 +46,6 @@
 import carousel from 'vue-owl-carousel'
 
 export default {
-  name: 'BannerShayna',
   components: {
     carousel
   },

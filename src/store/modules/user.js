@@ -45,11 +45,11 @@ export default {
     register ({ commit }, payload) {
       axios
         .post('/user/register', { name: payload.name, username: payload.username, email: payload.email, password: payload.password, isAdmin: payload.isAdmin === '' ? 0 : 1 })
-        .then((res) => {
-          console.log(res)
+        .then((data) => {
+          return data
         })
         .catch((error) => {
-          console.log(error)
+          return error
         })
     },
     login ({ commit }, payload) {

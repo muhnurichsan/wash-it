@@ -1,6 +1,5 @@
 <template>
-  <!-- Header Section Begin -->
-  <section class="header-section">
+  <header class="header-section">
     <div class="header-top">
       <div class="container">
         <div class="ht-left">
@@ -74,17 +73,17 @@
                 </div>
               </li>
               <li class="cart-icon ml-3">
-                <router-link to="/auth/login" v-if="!isAuthenticated">
+                <router-link v-if="(!isAuthenticated || isAuthenticated) && currentUser === null" tag="a" to="/auth/login">
                   <b-button pill variant="outline-dark">
                     Masuk/Daftar
                   </b-button>
                 </router-link>
-                <router-link to="/app" v-if="isAuthenticated && currentUser.isAdmin">
+                <router-link to="/app" v-if="isAuthenticated && (currentUser !== null && currentUser.isAdmin)">
                   <b-button pill variant="outline-dark">
                     Go To App
                   </b-button>
                 </router-link>
-                <router-link to="/" v-if="isAuthenticated && !currentUser.isAdmin">
+                <router-link to="/" v-if="isAuthenticated && (currentUser !== null && !currentUser.isAdmin)">
                   <b-button pill variant="outline-dark">
                     {{ currentUser.username }}
                   </b-button>
@@ -103,18 +102,34 @@
         </div>
       </div>
     </div>
-  </section>
-  <!-- Header End -->
+  </header>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  name: 'HeaderShayna',
+  name: 'Header',
   data () {
     return {
       carts: []
+    }
+  },
+  computed: {
+    totalHarga () {
+      return this.carts.reduce(function (items, data) {
+        return items + data.price
+      }, 0)
+    },
+    ...mapGetters(['currentUser', 'isAuthenticated'])
+  },
+  mounted () {
+    if (localStorage.getItem('carts')) {
+      try {
+        this.carts = JSON.parse(localStorage.getItem('carts'))
+      } catch (e) {
+        localStorage.removeItem('carts')
+      }
     }
   },
   methods: {
@@ -138,23 +153,6 @@ export default {
       const parsed = JSON.stringify(this.carts)
       localStorage.setItem('carts', parsed)
       window.location.reload()
-    }
-  },
-  computed: {
-    totalHarga () {
-      return this.carts.reduce(function (items, data) {
-        return items + data.price
-      }, 0)
-    },
-    ...mapGetters(['currentUser', 'isAuthenticated'])
-  },
-  mounted () {
-    if (localStorage.getItem('carts')) {
-      try {
-        this.carts = JSON.parse(localStorage.getItem('carts'))
-      } catch (e) {
-        localStorage.removeItem('carts')
-      }
     }
   }
 }

@@ -58,7 +58,9 @@ export default {
     }
 
     const user = localStorage.getItem('user')
-    this.setUser(JSON.parse(user))
+    if (user && user.length) {
+      this.setUser(JSON.parse(user))
+    }
   },
   methods: {
     ...mapMutations(['setUser']),

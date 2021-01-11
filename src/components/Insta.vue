@@ -58,12 +58,3 @@
   </div>
   <!-- Instagram Section End -->
 </template>
-
-<script>
-export default {
-  name: 'InstaShayna'
-}
-</script>
-
-<style>
-</style>

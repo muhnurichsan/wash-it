@@ -1,30 +1,30 @@
 <template>
   <div class="home">
-    <HeaderShayna />
-    <HeroShayna />
-    <BannerShayna />
-    <InstaShayna />
-    <PartnerShayna />
+    <Header />
+    <Hero />
+    <Banner />
+    <Insta />
+    <Partner />
     <Footer />
   </div>
 </template>
 
 <script>
-import HeaderShayna from '@/components/Header.vue'
-import HeroShayna from '@/components/Hero.vue'
-import BannerShayna from '@/components/Banner.vue'
-import InstaShayna from '@/components/Insta.vue'
-import PartnerShayna from '@/components/Partner.vue'
-import Footer from '@/components/Footer.vue'
+import Header from '@/components/Header'
+import Hero from '@/components/Hero'
+import Banner from '@/components/Banner'
+import Insta from '@/components/Insta'
+import Partner from '@/components/Partner'
+import Footer from '@/components/Footer'
 
 export default {
   name: 'Home',
   components: {
-    HeaderShayna,
-    HeroShayna,
-    BannerShayna,
-    InstaShayna,
-    PartnerShayna,
+    Header,
+    Hero,
+    Banner,
+    Insta,
+    Partner,
     Footer
   }
 }
