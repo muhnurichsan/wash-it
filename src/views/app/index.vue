@@ -4,7 +4,7 @@
     <sidebar/>
     <main>
       <div class="container-fluid">
-        <router-view/>
+        <router-view></router-view>
       </div>
     </main>
   </div>

@@ -194,7 +194,7 @@ export default {
     },
     logout () {
       this.signOut().then(() => {
-        this.$router.push('/user/login')
+        this.$router.push('/auth/login')
       })
     },
 

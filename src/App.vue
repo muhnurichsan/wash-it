@@ -13,6 +13,7 @@
 <script>
 import { getDirection } from '@/utils'
 import { defaultColor } from '@/constants/config'
+import { mapMutations } from 'vuex'
 
 export default {
   data () {
@@ -55,8 +56,12 @@ export default {
       document.dir = 'ltr'
       document.body.classList.remove('rtl')
     }
+
+    const user = localStorage.getItem('user')
+    this.setUser(JSON.parse(user))
   },
   methods: {
+    ...mapMutations(['setUser']),
     getThemeColor () {
       return localStorage.getItem('themeColor')
         ? localStorage.getItem('themeColor')
@@ -68,7 +73,7 @@ export default {
 
 <style scoped>
 .color-switches {
-  position: absolute;
+  position: fixed;
   z-index: 100000;
   right: 20px;
   bottom: 15px;

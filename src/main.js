@@ -2,7 +2,11 @@ import Vue from 'vue'
 import App from './App'
 
 // BootstrapVue add
-import BootstrapVue from 'bootstrap-vue'
+import './assets/css/sass/landing.scss'
+import {
+  BootstrapVue,
+  IconsPlugin
+} from 'bootstrap-vue'
 // Router & Store add
 import router from './router'
 import { store } from './store'
@@ -32,6 +36,7 @@ window.axios = axios
 axios.defaults.baseURL = process.env.VUE_APP_API_BASE_URL
 
 Vue.use(BootstrapVue)
+Vue.use(IconsPlugin)
 Vue.use(VueI18n)
 
 const messages = { en: en, id: id }

@@ -81,19 +81,19 @@
           data-link="pages"
           :class="{'d-block':selectedParentMenu==='pages' }"
         >
-          <router-link tag="li" to="/user/login">
+          <router-link tag="li" to="/auth/login">
             <a target="_blank">
               <i class="simple-icon-user-following"></i>
               <span>{{ $t("menu.login") }}</span>
             </a>
           </router-link>
-          <router-link tag="li" to="/user/register">
+          <router-link tag="li" to="/auth/register">
             <a target="_blank">
               <i class="simple-icon-user-follow"></i>
               <span>{{ $t("menu.register") }}</span>
             </a>
           </router-link>
-          <router-link tag="li" to="/user/forgot-password">
+          <router-link tag="li" to="/auth/forgot-password">
             <a target="_blank">
               <i class="simple-icon-user-unfollow"></i>
               <span>{{ $t("menu.forgot-password") }}</span>

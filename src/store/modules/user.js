@@ -5,23 +5,27 @@ export default {
   state: {
     currentUser: localStorage.getItem('user') != null ? JSON.parse(localStorage.getItem('user')) : null,
     loginError: null,
-    processing: false
+    processing: false,
+    isAuthenticated: false
   },
   getters: {
     currentUser: state => state.currentUser,
     processing: state => state.processing,
-    loginError: state => state.loginError
+    loginError: state => state.loginError,
+    isAuthenticated: state => state.isAuthenticated
   },
   mutations: {
     setUser (state, payload) {
       state.currentUser = payload
       state.processing = false
       state.loginError = null
+      state.isAuthenticated = true
     },
     setLogout (state) {
       state.currentUser = null
       state.processing = false
       state.loginError = null
+      state.isAuthenticated = false
     },
     setProcessing (state, payload) {
       state.processing = payload
@@ -31,12 +35,23 @@ export default {
       state.loginError = payload
       state.currentUser = null
       state.processing = false
+      state.isAuthenticated = false
     },
     clearError (state) {
       state.loginError = null
     }
   },
   actions: {
+    register ({ commit }, payload) {
+      axios
+        .post('/user/register', { name: payload.name, username: payload.username, email: payload.email, password: payload.password, isAdmin: payload.isAdmin === '' ? 0 : 1 })
+        .then((res) => {
+          console.log(res)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
     login ({ commit }, payload) {
       commit('clearError')
       commit('setProcessing', true)

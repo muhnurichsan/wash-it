@@ -1,51 +1,84 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import AuthRequired from '@/utils/AuthRequired'
+// import AuthRequired from './utils/AuthRequired'
+import AuthAdminRequired from '@/utils/AuthAdminRequired'
+import AuthUserRequired from '@/utils/AuthUserRequired'
+import Guest from '@/utils/Guest'
 
 Vue.use(Router)
 
 const routes = [
   {
     path: '/',
-    component: () => import('./views/app'),
-    redirect: '/app',
-    beforeEnter: AuthRequired,
+    component: () => import('./views/user/Home'),
+    meta: {
+      requiresAuth: false
+    }
+  },
+  {
+    path: '/app',
+    component: () => import(/* webpackChunkName: "app" */ './views/app'),
+    beforeEnter: AuthAdminRequired,
+    redirect: '/app/admin/dashboard',
     children: [
-      // {
-      //   path: 'app/piaf',
-      //   component: () => import('./views/app/piaf'),
-      //   redirect: '/app/piaf/start',
-      //   children: [
-      //     { path: 'start', component: () => import('./views/app/piaf/Start') }
-      //   ]
-      // }
       {
-        // IsAdmin
-        path: 'app',
-        component: () => import('./views/app/admin/index'),
-        redirect: '/admin/dashboard',
+        path: 'admin',
+        component: () => import(/* webpackChunkName: "admin" */ './views/app/admin/index'),
+        // beforeEnter: AuthAdminRequired,
+        redirect: '/app/admin/dashboard',
         children: [
           {
-            path: '/admin/dashboard',
-            component: () => import('./views/app/admin/Dashboard')
+            path: 'dashboard',
+            component: () => import(/* webpackChunkName: "admin" */ './views/app/admin/Dashboard')
           },
           {
-            path: '/admin/transaction',
-            component: () => import('./views/app/admin/Transaction')
+            path: 'transaction',
+            component: () => import(/* webpackChunkName: "admin" */ './views/app/admin/Transaction')
           }
         ]
       }
     ]
   },
-  { path: '/error', component: () => import(/* webpackChunkName: "error" */ './views/Error') },
   {
     path: '/user',
-    component: () => import(/* webpackChunkName: "user" */ './views/user'),
-    redirect: '/user/login',
+    component: () => import(/* webpackChunkName: "user" */ './views/user/index'),
+    beforeEnter: AuthUserRequired,
     children: [
-      { path: 'login', component: () => import(/* webpackChunkName: "user" */ './views/user/Login') },
-      { path: 'register', component: () => import(/* webpackChunkName: "user" */ './views/user/Register') },
-      { path: 'forgot-password', component: () => import(/* webpackChunkName: "user" */ './views/user/ForgotPassword') }
+      {
+        path: '/about',
+        name: 'about',
+        component: () => import(/* webpackChunkName: "about" */ './views/user/About.vue')
+      },
+      {
+        path: '/product/:id',
+        name: 'product',
+        props: true,
+        component: () => import(/* webpackChunkName: "about" */ './views/user/Product.vue')
+      },
+      {
+        path: '/cart',
+        name: 'Cart',
+        props: true,
+        component: () => import(/* webpackChunkName: "about" */ './views/user/ShoppingCart.vue')
+      },
+      {
+        path: '/success',
+        name: 'Success',
+        component: () => import('./views/user/Success.vue')
+
+      }
+    ]
+  },
+  { path: '/error', component: () => import(/* webpackChunkName: "error" */ './views/Error') },
+  {
+    path: '/auth',
+    component: () => import(/* webpackChunkName: "auth" */ './views/auth'),
+    redirect: '/auth/login',
+    beforeEnter: Guest,
+    children: [
+      { path: 'login', component: () => import(/* webpackChunkName: "user" */ './views/auth/Login') },
+      { path: 'register', component: () => import(/* webpackChunkName: "user" */ './views/auth/Register') },
+      { path: 'forgot-password', component: () => import(/* webpackChunkName: "user" */ './views/auth/ForgotPassword') }
     ]
   },
   { path: '*', component: () => import(/* webpackChunkName: "error" */ './views/Error') }

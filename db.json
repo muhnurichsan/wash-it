@@ -1,0 +1,96 @@
+{
+  "best-product": [
+    {
+      "id": 1,
+      "kode": "K-01",
+      "nama": "Soto Ayam",
+      "desc": "Soto ayam merupakan makanan kegemaran masyarakat indonesia sejak zaman penjajahan hingga sekarang",
+      "harga": "10.000",
+      "is_ready": true,
+      "gambar": "soto-ayam.jpg"
+    },
+    {
+      "id": 2,
+      "kode": "K-02",
+      "nama": "Soto Sapi",
+      "desc": "Soto sapi merupakan makanan kegemaran masyarakat indonesia sejak zaman penjajahan hingga sekarang",
+      "harga": "12.000",
+      "is_ready": true,
+      "gambar": "soto-sapi.jpg"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "kode": "K-01",
+      "nama": "Soto Ayam",
+      "desc": "Soto ayam merupakan makanan kegemaran masyarakat indonesia sejak zaman penjajahan hingga sekarang",
+      "harga": "10.000",
+      "is_ready": true,
+      "gambar": "soto-ayam.jpg"
+    },
+    {
+      "id": 2,
+      "kode": "K-02",
+      "nama": "Soto Sapi",
+      "desc": "Soto sapi merupakan makanan kegemaran masyarakat indonesia sejak zaman penjajahan hingga sekarang",
+      "harga": "12.000",
+      "is_ready": true,
+      "gambar": "soto-sapi.jpg"
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "keranjang": [],
+  "pesanan": [
+    {
+      "nama": "ichsan",
+      "noMeja": "12",
+      "carts": [
+        {
+          "jumlah_pesanan": "1",
+          "keterangan": "pedas",
+          "product": {
+            "id": 1,
+            "kode": "K-01",
+            "nama": "Soto Ayam",
+            "desc": "Soto ayam merupakan makanan kegemaran masyarakat indonesia sejak zaman penjajahan hingga sekarang",
+            "harga": "10.000",
+            "is_ready": true,
+            "gambar": "soto-ayam.jpg"
+          },
+          "id": 1
+        }
+      ],
+      "id": 1
+    },
+    {
+      "name": "1",
+      "email": "1",
+      "address": "1",
+      "number": "1",
+      "transaction_total": 31.9,
+      "transaction_status": "PENDING",
+      "transaction_details": [
+        5,
+        6
+      ],
+      "id": 2
+    }
+  ]
+}

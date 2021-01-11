@@ -1,20 +1,28 @@
 <template>
-    <div id="root">
-        <div class="fixed-background"></div>
-        <main>
-            <div class="container">
-                <router-view/>
-            </div>
-        </main>
-    </div>
+  <div id="app">
+    <router-view />
+  </div>
 </template>
-<script>
-export default {
-  mounted () {
-    document.body.classList.add('background')
-  },
-  beforeDestroy () {
-    document.body.classList.remove('background')
-  }
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
 }
-</script>
+
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
+}
+</style>
