@@ -47,24 +47,24 @@ const routes = [
       {
         path: '/about',
         name: 'about',
-        component: () => import(/* webpackChunkName: "about" */ './views/user/About.vue')
+        component: () => import(/* webpackChunkName: "user" */ './views/user/About.vue')
       },
       {
         path: '/product/:id',
         name: 'product',
         props: true,
-        component: () => import(/* webpackChunkName: "about" */ './views/user/Product.vue')
+        component: () => import(/* webpackChunkName: "user" */ './views/user/Product.vue')
       },
       {
         path: '/cart',
         name: 'Cart',
         props: true,
-        component: () => import(/* webpackChunkName: "about" */ './views/user/ShoppingCart.vue')
+        component: () => import(/* webpackChunkName: "user" */ './views/user/ShoppingCart.vue')
       },
       {
         path: '/success',
         name: 'Success',
-        component: () => import('./views/user/Success.vue')
+        component: () => import(/* webpackChunkName: "user" */ './views/user/Success.vue')
 
       }
     ]
@@ -76,9 +76,9 @@ const routes = [
     redirect: '/auth/login',
     beforeEnter: Guest,
     children: [
-      { path: 'login', component: () => import(/* webpackChunkName: "user" */ './views/auth/Login') },
-      { path: 'register', component: () => import(/* webpackChunkName: "user" */ './views/auth/Register') },
-      { path: 'forgot-password', component: () => import(/* webpackChunkName: "user" */ './views/auth/ForgotPassword') }
+      { path: 'login', component: () => import(/* webpackChunkName: "auth" */ './views/auth/Login') },
+      { path: 'register', component: () => import(/* webpackChunkName: "auth" */ './views/auth/Register') },
+      { path: 'forgot-password', component: () => import(/* webpackChunkName: "auth" */ './views/auth/ForgotPassword') }
     ]
   },
   { path: '*', component: () => import(/* webpackChunkName: "error" */ './views/Error') }
