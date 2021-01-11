@@ -13,13 +13,13 @@
         <ul class="list-unstyled">
           <li :class="{ active : selectedParentMenu === 'dashboard'}">
             <router-link :class="{ active : selectedParentMenu === 'dashboard' }"
-                         @click.native="changeSelectedParentHasNoSubmenu('dashboard')" to="/admin/dashboard" tag="li">
+                         @click.native="changeSelectedParentHasNoSubmenu('dashboard')" to="/app/admin/dashboard" tag="li">
               <a><i class="iconsminds-dashboard"></i> {{ $t("menu.dashboard") }}</a>
             </router-link>
           </li>
           <li :class="{ active : selectedParentMenu === 'transaction'}">
             <router-link :class="{ active : selectedParentMenu === 'transaction' }"
-                         @click.native="changeSelectedParentHasNoSubmenu('transaction')" to="/admin/transaction" tag="li">
+                         @click.native="changeSelectedParentHasNoSubmenu('transaction')" to="/app/admin/transaction" tag="li">
               <a><i class="iconsminds-cash-register-2"></i> {{ $t("menu.transaction") }}</a>
             </router-link>
           </li>
