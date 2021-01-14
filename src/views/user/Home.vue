@@ -1,11 +1,10 @@
 <template>
   <div class="home">
-    <Header />
-    <Hero />
-    <Banner />
-    <Insta />
-    <Partner />
-    <Footer />
+    <Header/>
+    <Hero/>
+    <Banner/>
+    <Shops/>
+    <Footer/>
   </div>
 </template>
 
@@ -13,8 +12,7 @@
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import Banner from '@/components/Banner'
-import Insta from '@/components/Insta'
-import Partner from '@/components/Partner'
+import Shops from '@/components/Shops'
 import Footer from '@/components/Footer'
 
 export default {
@@ -23,8 +21,7 @@ export default {
     Header,
     Hero,
     Banner,
-    Insta,
-    Partner,
+    Shops,
     Footer
   }
 }

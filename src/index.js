@@ -1,4 +1,3 @@
-
 import './assets/css/vendor/dropzone.min.css'
 import './assets/css/vendor/bootstrap.min.css'
 import './assets/css/vendor/bootstrap.rtl.only.min.css'
@@ -20,7 +19,7 @@ if (localStorage.getItem('themeColor')) {
   color = localStorage.getItem('themeColor')
 }
 let render = () => {
-    import('./assets/css/sass/themes/piaf.' + color + '.scss').then(() => require('./main'))
+    import ('./assets/css/sass/themes/piaf.' + color + '.scss').then(() => require('./main'))
 }
 
 render()

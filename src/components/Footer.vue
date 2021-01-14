@@ -11,9 +11,9 @@
               /></a>
             </div>
             <ul>
-              <li>Address: Setra Duta, Bandung</li>
-              <li>Phone: +628 22081996</li>
-              <li>Email: hello.shayna@gmail.com</li>
+              <li>Address: Dau,Malang</li>
+              <li>Phone: +62 822 3431 6663</li>
+              <li>Email: washIT@gmail.com</li>
             </ul>
             <div class="footer-social">
               <a href="#"><i class="simple-icon-social-facebook"></i></a>
@@ -51,7 +51,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 copyright-text text-center">
-            Copyright &copy; 2020-2021 All rights reserved | Shayna
+            Copyright &copy; 2020-2021 All rights reserved | WashIT
           </div>
         </div>
       </div>
@@ -63,6 +63,3 @@
 <script>
 export default {}
 </script>
-
-<style>
-</style>

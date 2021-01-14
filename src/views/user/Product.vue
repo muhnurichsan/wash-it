@@ -7,14 +7,16 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="breadcrumb-text product-more">
-              <router-link to="/"><i class="iconsminds-home
-"></i> Home</router-link>
+              <router-link to="/">
+                <i class="iconsminds-home"></i> Home
+              </router-link>
               <router-link to="/product">Detail</router-link>
             </div>
           </div>
         </div>
       </div>
-    </div><!-- Breadcrumb Section Begin -->
+    </div>
+    <!-- Breadcrumb Section Begin -->
 
     <!-- Product Shop Section Begin -->
     <section class="product-shop spad page-details">
@@ -27,21 +29,21 @@
                   <img class="product-big-img" :src="img_default" alt=""/>
                 </div>
                 <div
-                  class="product-thumbs"
-                  v-if="productDetail.galleries.length > 0"
+                    class="product-thumbs"
+                    v-if="productDetail.galleries.length > 0"
                 >
                   <carousel
-                    class="product-thumbs-track ps-slider"
-                    :dots="false"
-                    :nav="false"
-                    :margin="10"
+                      class="product-thumbs-track ps-slider"
+                      :dots="false"
+                      :nav="false"
+                      :margin="10"
                   >
                     <div
-                      v-for="ss in productDetail.galleries"
-                      :key="ss.id"
-                      class="pt"
-                      @click="changeImage(ss.photo)"
-                      :class="ss.photo == img_default ? 'active' : ''"
+                        v-for="ss in productDetail.galleries"
+                        :key="ss.id"
+                        class="pt"
+                        @click="changeImage(ss.photo)"
+                        :class="ss.photo === img_default ? 'active' : ''"
                     >
                       <img :src="ss.photo" alt=""/>
                     </div>
@@ -58,9 +60,9 @@
                     <h4>${{ productDetail.price }}.00</h4>
                   </div>
                   <div class="quantity">
-                    <a @click="saveCart(productDetail.id,productDetail.name,productDetail.price,productDetail.galleries[0].photo)"
-                      href="#"
-                      class="primary-btn pd-cart">
+                    <a @click="saveCart(productDetail.id, productDetail.name, productDetail.price, productDetail.galleries[0].photo)"
+                        href="#"
+                        class="primary-btn pd-cart">
                       Add To Cart
                     </a>
                   </div>
@@ -72,7 +74,7 @@
       </div>
     </section>
     <!-- Product Shop Section End -->
-    <RelatedShayna/>
+
     <Footer/>
   </div>
 </template>
@@ -81,7 +83,6 @@
 import HeaderShayna from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
 import carousel from 'vue-owl-carousel'
-import RelatedShayna from '@/components/Related.vue'
 import axios from 'axios'
 
 export default {
@@ -89,8 +90,7 @@ export default {
   components: {
     HeaderShayna,
     Footer,
-    carousel,
-    RelatedShayna
+    carousel
   },
   data () {
     return {

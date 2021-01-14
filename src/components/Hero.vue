@@ -3,14 +3,14 @@
   <section class="hero-section">
     <carousel class="hero-items" :items="1" :nav="false" :autoplay="true">
       <div
-        class="single-hero-items set-bg"
-        :style="{backgroundImage: 'url(' + require('@/assets/landing/img/hero-1.jpg')  + ')'} "
+          class="single-hero-items set-bg"
+          :style="{backgroundImage:'url(' + require('@/assets/landing/img/laundry4.jpg') + ')'}"
       >
         <div class="container">
           <div class="row">
             <div class="col-lg-5">
-              <span>Bag,kids</span>
-              <h1>Black friday</h1>
+              <span>Welcome to</span>
+              <h1 class="text-white">WashIT</h1>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore
@@ -21,14 +21,14 @@
         </div>
       </div>
       <div
-        class="single-hero-items set-bg"
-        :style="{backgroundImage: 'url(' + require('@/assets/landing/img/hero-2.jpg')  + ')'} "
+          class="single-hero-items set-bg"
+          :style="{ backgroundImage: 'url(' + require('@/assets/landing/img/laundry2.jpg') + ')'}"
       >
         <div class="container">
           <div class="row">
             <div class="col-lg-5">
-              <span>Bag,kids</span>
-              <h1>Black friday</h1>
+              <span>WashIT</span>
+              <h1 class="text-white">Black Friday</h1>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore
@@ -39,14 +39,14 @@
         </div>
       </div>
       <div
-        class="single-hero-items set-bg"
-        :style="{backgroundImage: 'url(' + require('@/assets/landing/img/hero-3.jpg')  + ')'} "
+          class="single-hero-items set-bg"
+          :style="{ backgroundImage: 'url(' + require('@/assets/landing/img/laundry3.jpg') + ')'}"
       >
         <div class="container">
           <div class="row">
             <div class="col-lg-5">
-              <span>Bag,kids</span>
-              <h1>Black friday</h1>
+              <span>WashIT</span>
+              <h1>Black Friday</h1>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore
@@ -70,6 +70,3 @@ export default {
   }
 }
 </script>
-
-<style>
-</style>

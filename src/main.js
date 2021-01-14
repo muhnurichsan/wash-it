@@ -3,6 +3,8 @@ import App from './App'
 
 // BootstrapVue add
 import './assets/css/sass/landing.scss'
+import './assets/css/sass/style.scss'
+
 import {
   BootstrapVue,
   IconsPlugin
@@ -54,7 +56,7 @@ Vue.component('b-colxx', Colxx)
 Vue.component('vue-perfect-scrollbar', vuePerfectScrollbar)
 Vue.use(require('vue-shortkey'))
 Vue.use(contentmenu)
-Vue.use(lineClamp, { /* plugin options */})
+Vue.use(lineClamp, { /* plugin options */ })
 Vue.use(VCalendar, {
   firstDayOfWeek: 2, // ...other defaults,
   formats: {
