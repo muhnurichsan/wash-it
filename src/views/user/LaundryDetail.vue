@@ -1,21 +1,21 @@
 <template>
   <div class="home">
     <Header/>
-    <Photo/>
+    <Gallery/>
     <Footer/>
   </div>
 </template>
 
 <script>
 import Header from '@/components/Header'
-import Photo from '@/components/Photo'
+import Gallery from '@/components/Gallery'
 import Footer from '@/components/Footer'
 
 export default {
   name: 'LaundryDetail',
   components: {
     Header,
-    Photo,
+    Gallery,
     Footer
   }
 }

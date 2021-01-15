@@ -1,0 +1,170 @@
+<template>
+  <header class="header-section h-1170">
+    <div class="container">
+      <div class="inner-header">
+        <div class="col-md-12 col-sm-6 col-sm-3">
+          <div class="card h-1000 rounded">
+            <div class="card-body">
+              <h3 class="text-center">Laundry Shop Name</h3>
+              <p class="text-center">Laundry Shop Location</p>
+              <div class="container">
+                <div class="row mb-md-5">
+                  <div class="col-md-8">
+                    <img
+                        src="@/assets/landing/img/laundry2.jpg"
+                        alt=""
+                        class="mw-md-100 img-round"
+                    />
+                  </div>
+                  <div class="col-md-4">
+                    <div class="d-flex flex-column">
+                      <div class="h-200">
+                        <img
+                            src="@/assets/landing/img/laundry1.jpg"
+                            alt=""
+                            class="img-round"
+                        />
+                      </div>
+                      <div class="h-md-100 mt-35">
+                        <img
+                            src="@/assets/landing/img/laundry1.jpg"
+                            alt=""
+                            class="img-round"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-8">
+                    <div class="d-flex flex-column text-left">
+                      <h3 class="py-md-3">About This Laundry</h3>
+                      <div class="pb-md-4 text-justify">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Libero reprehenderit est explicabo, expedita
+                        exercitationem ipsam vitae perspiciatis laborum, alias
+                        dignissimos omnis accusantium qui maxime magni aliquid
+                        excepturi ducimus nostrum! Corporis! Lorem ipsum dolor
+                        sit amet consectetur adipisicing elit. Voluptatem in
+                        quibusdam, aliquam deleniti est tenetur incidunt, ad
+                        facere qui inventore officiis veniam ipsam laudantium
+                        adipisci sint amet, dolorem accusamus cumque.
+                      </div>
+                      <div class="d-flex justify-content-between">
+                        <div class="media media-box">
+                          <img
+                              class="mr-3 icons"
+                              src="@/assets/icons/clock.svg"
+                              alt="Generic placeholder image"
+                          />
+                          <div class="media-body">
+                            <h5 class="mt-0">Estimate</h5>
+                            <p class="mt-0">Media heading</p>
+                          </div>
+                        </div>
+                        <div class="media media-box">
+                          <img
+                              class="mr-3 icons"
+                              src="@/assets/icons/clock.svg"
+                              alt="Generic placeholder image"
+                          />
+                          <div class="media-body">
+                            <h5 class="mt-0">Working Hours</h5>
+                            <p class="mt-0">Media heading</p>
+                          </div>
+                        </div>
+                        <div class="media media-box">
+                          <img
+                              class="mr-3 icons"
+                              src="@/assets/icons/clock.svg"
+                              alt="Generic placeholder image"
+                          />
+                          <div class="media-body">
+                            <h5 class="mt-0">Advantages</h5>
+                            <p class="mt-0">Media heading</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="card h-300">
+                      <div class="card-body">
+                        <div class="d-flex flex-column text-left">
+                          <h4>Booking Information</h4>
+                          <table
+                              class="table table-borderless table-responsive mb-10"
+                          >
+                            <thead>
+                            <tr>
+                              <th scope="col"></th>
+                              <th scope="col"></th>
+                              <th scope="col"></th>
+                              <th scope="col"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                              <th scope="row">Contact</th>
+
+                              <td colspan="3"></td>
+                              <td>0856734839</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">Payment</th>
+                              <td colspan="3"></td>
+                              <td>COD</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">Price</th>
+                              <td colspan="3"></td>
+                              <td>4000 / kg</td>
+                            </tr>
+                            </tbody>
+                          </table>
+                          <b-button variant="primary">
+                            <router-link to="/order"> Booking Now</router-link>
+                          </b-button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+</template>
+
+<script>
+export default {
+  name: 'Gallery',
+  data () {
+    return {
+      carts: []
+    }
+  }
+}
+</script>
+
+<style scoped>
+.si-pic img {
+  width: 100px;
+  height: 100px;
+}
+
+.img-round {
+  border-radius: 15px;
+}
+
+.media-box {
+  width: 200px;
+}
+
+.icons {
+  width: 40px;
+}
+</style>

@@ -4,7 +4,7 @@
     <carousel class="hero-items" :items="1" :nav="false" :autoplay="true">
       <div
           class="single-hero-items set-bg"
-          :style="{backgroundImage:'url(' + require('@/assets/landing/img/laundry4.jpg') + ')'}"
+          :style="{ backgroundImage: 'url(' + require('@/assets/landing/img/laundry4.jpg') + ')' }"
       >
         <div class="container">
           <div class="row">
@@ -22,7 +22,7 @@
       </div>
       <div
           class="single-hero-items set-bg"
-          :style="{ backgroundImage: 'url(' + require('@/assets/landing/img/laundry2.jpg') + ')'}"
+          :style="{ backgroundImage: 'url(' + require('@/assets/landing/img/laundry2.jpg') + ')' }"
       >
         <div class="container">
           <div class="row">
@@ -40,7 +40,7 @@
       </div>
       <div
           class="single-hero-items set-bg"
-          :style="{ backgroundImage: 'url(' + require('@/assets/landing/img/laundry3.jpg') + ')'}"
+          :style="{ backgroundImage: 'url(' + require('@/assets/landing/img/laundry3.jpg') + ')' }"
       >
         <div class="container">
           <div class="row">

@@ -10,7 +10,7 @@
               <router-link to="/">
                 <i class="iconsminds-home"></i> Home
               </router-link>
-              <router-link to="/cart">Booking Order</router-link>
+              <router-link to="/order">Booking Order</router-link>
             </div>
           </div>
         </div>
@@ -92,14 +92,14 @@
                     </li>
                     <li class="subtotal mt-3">
                       Total Biaya
-                      <span>${{ totalBiaya }}0</span>
+                      <span>Rp.{{ totalBiaya }}0</span>
                     </li>
                     <li class="subtotal mt-3">Payment <span>COD</span></li>
                     <li class="subtotal mt-3">
                       Courier Name <span>Shayna</span>
                     </li>
                   </ul>
-                  <a @click="checkout" href="#" class="proceed-btn"
+                  <a @click="checkout" href="/history" class="proceed-btn"
                   >Check Order</a
                   >
                 </div>
