@@ -56,6 +56,16 @@
 
     <div class="navbar-right">
       <div class="header-icons d-inline-block align-middle">
+        <div class="position-relative d-none d-sm-inline-block ">
+          <div class="btn-group mr-5">
+            <router-link to="/">
+              <b-button variant="outline-dark" size="sm">
+                <i class="iconsminds-home" />
+                Go to Homepage
+              </b-button>
+            </router-link>
+          </div>
+        </div>
         <div class="position-relative d-inline-block">
           <b-dropdown
             variant="empty"

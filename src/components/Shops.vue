@@ -1,165 +1,45 @@
 <template>
   <section class="ecommerce_18 bg-light pt-100 pb-70">
     <div class="container px-xl-0">
-      <h2
-          class="mb-40 small"
+      <h2 class="mb-40 small"
           data-aos-duration="600"
           data-aos="fade-down"
-          data-aos-delay="0"
-      >
+          data-aos-delay="0">
         Most Picked This Month
       </h2>
-      <div
-          class="d-flex flex-wrap justify-content-between align-items-baseline relative ecommerce_18_nav"
-      ></div>
       <div class="row align-items-start align-items-lg-stretch products">
-        <div
-            class="mt-30 mb-30 col-xl-6 col-lg-10 col-md-5 col-sm-6 d-lg-flex align-items-stretch product"
-            data-aos-duration="600"
-            data-aos="fade-down"
-            data-aos-delay="0"
+        <div class="mt-30 mb-30 col-xl-6 col-lg-10 col-md-5 col-sm-6 d-lg-flex align-items-stretch product"
+             data-aos-duration="600"
+             data-aos="fade-down"
+             data-aos-delay="0"
+             v-for="(laundry, index) in mostPickedThisMonth" :key="index" :id="laundry.id"
         >
-          <a href="#" class="align-self-start flex-shrink-0 img_link">
-            <img
-                srcset="i/ecommerce_18_product_1@2x.jpg 2x"
-                src="i/ecommerce_18_product_1.jpg"
-                alt=""
-                class="img-fluid radius10"
+          <router-link :to="'/laundry_detail/' + laundry.id" class="align-self-start flex-shrink-0 img_link">
+            <img srcset="i/ecommerce_18_product_1@2x.jpg 2x"
+                 src="i/ecommerce_18_product_1.jpg"
+                 alt=""
+                 class="img-fluid radius10"
             />
-          </a>
+          </router-link>
           <div class="mt-30 mt-lg-0 ml-30 pb-60 relative inner">
-            <a href="#" class="d-block link color-main f-22 semibold title"
-            >Laundry Shop Name</a
-            >
-            <div class="mb-15 f-14 semibold sp-20 color-heading price">
-              Price/kg
+            <router-link :to="'/laundry_detail/' + laundry.slug">
+              <span class="d-block f-22 semibold title text-dark">{{ laundry.name }}</span>
+            </router-link>
+            <div v-if="laundry.price" class="mb-15 f-14 semibold sp-20 color-heading price">
+              Rp{{ laundry.price || '0' }}/kg
             </div>
-            <div class="color-heading text-adaptive">
-              Laundry Shop location or Laundry Shop advantages
+            <div v-if="laundry.location" class="color-heading text-adaptive">
+              {{ laundry.location || '' }}
             </div>
-            <div
-                class="mt-30 mt-lg-0 absolute d-flex flex-wrap align-items-baseline buttons"
-            >
-              <b-button pill variant="outline-secondary" class="mr-10 sm">
-                <router-link to="/laundry_detail" class="medium"
-                >Details
-                </router-link
-                >
-              </b-button>
-              <a href="#" class="link action-2 medium f-16">Booking Now</a>
+            <div v-if="laundry.adventages" class="color-heading text-adaptive">
+              {{ laundry.adventages || '' }}
             </div>
-          </div>
-        </div>
-        <div
-            class="mt-30 mb-30 col-xl-6 col-lg-10 col-md-5 col-sm-6 d-lg-flex align-items-stretch product"
-            data-aos-duration="600"
-            data-aos="fade-down"
-            data-aos-delay="300"
-        >
-          <a href="#" class="align-self-start flex-shrink-0 img_link">
-            <img
-                srcset="i/ecommerce_18_product_2@2x.jpg 2x"
-                src="i/ecommerce_18_product_2.jpg"
-                alt=""
-                class="img-fluid radius10"
-            />
-          </a>
-          <div class="mt-30 mt-lg-0 ml-30 pb-60 relative inner">
-            <a href="#" class="d-block link color-main f-22 semibold title"
-            >Macarons</a
-            >
-            <div class="mb-15 f-14 semibold sp-20 color-heading price">
-              $3.99
-            </div>
-            <div class="color-heading text-adaptive">
-              Flavors include: Original, Spearmint, Wintergreen, Mint <br/>
-              Bliss, Wild Blueberry Twist.
-            </div>
-            <div
-                class="mt-30 mt-lg-0 absolute d-flex flex-wrap align-items-baseline buttons"
-            >
-              <b-button pill variant="outline-secondary" class="mr-10 sm">
-                <router-link to="/laundry_detail" class="medium"
-                >Details
-                </router-link
-                >
-              </b-button>
-              <a href="#" class="link action-2 medium f-16">Booking Now</a>
-            </div>
-          </div>
-        </div>
-        <div
-            class="mt-30 mb-30 col-xl-6 col-lg-10 col-md-5 col-sm-6 d-lg-flex align-items-stretch product"
-            data-aos-duration="600"
-            data-aos="fade-down"
-            data-aos-delay="0"
-        >
-          <a href="#" class="align-self-start flex-shrink-0 img_link">
-            <img
-                srcset="i/ecommerce_18_product_3@2x.jpg 2x"
-                src="i/ecommerce_18_product_3.jpg"
-                alt=""
-                class="img-fluid radius10"
-            />
-          </a>
-          <div class="mt-30 mt-lg-0 ml-30 pb-60 relative inner">
-            <a href="#" class="d-block link color-main f-22 semibold title"
-            >Jellybeans</a
-            >
-            <div class="mb-15 f-14 semibold sp-20 color-heading price">
-              $2.99
-            </div>
-            <div class="color-heading text-adaptive">
-              Jelly Belly Sours beans in bulk. Tasty and tart. Six sour flavors.
-            </div>
-            <div
-                class="mt-30 mt-lg-0 absolute d-flex flex-wrap align-items-baseline buttons"
-            >
-              <b-button pill variant="outline-secondary" class="mr-10 sm">
-                <router-link to="/laundry_detail" class="medium"
-                >Details
-                </router-link
-                >
-              </b-button>
-              <a href="#" class="link action-2 medium f-16">Booking Now</a>
-            </div>
-          </div>
-        </div>
-        <div
-            class="mt-30 mb-30 col-xl-6 col-lg-10 col-md-5 col-sm-6 d-lg-flex align-items-stretch product"
-            data-aos-duration="600"
-            data-aos="fade-down"
-            data-aos-delay="300"
-        >
-          <a href="#" class="align-self-start flex-shrink-0 img_link">
-            <img
-                srcset="i/ecommerce_18_product_4@2x.jpg 2x"
-                src="i/ecommerce_18_product_4.jpg"
-                alt=""
-                class="img-fluid radius10"
-            />
-          </a>
-          <div class="mt-30 mt-lg-0 ml-30 pb-60 relative inner">
-            <a href="#" class="d-block link color-main f-22 semibold title"
-            >Doughnuts</a
-            >
-            <div class="mb-15 f-14 semibold sp-20 color-heading price">
-              $5.99
-            </div>
-            <div class="color-heading text-adaptive">
-              Flavors include: Original, Spearmint, Wintergreen, Mint <br/>
-              Bliss, Wild Blueberry Twist.
-            </div>
-            <div
-                class="mt-30 mt-lg-0 absolute d-flex flex-wrap align-items-baseline buttons"
-            >
-              <b-button pill variant="outline-secondary" class="mr-10 sm">
-                <router-link to="/laundry_detail" class="medium"
-                >Details
-                </router-link
-                >
-              </b-button>
-              <a href="#" class="link action-2 medium f-16">Booking Now</a>
+            <div class="mt-30 mt-lg-0 absolute d-flex flex-wrap align-items-baseline buttons">
+              <router-link :to="'/laundry_detail/' + laundry.slug">
+                <b-button pill variant="success" class="mr-10" size="sm">
+                  Booking Now
+                </b-button>
+              </router-link>
             </div>
           </div>
         </div>
@@ -205,9 +85,11 @@
                 data-aos="fade-down"
                 data-aos-delay="750"
             >
-              <b-button pill variant="outline-secondary">
-                <a href="#">Get Started</a>
-              </b-button>
+              <router-link to="/">
+                <b-button pill variant="outline-secondary">
+                  Get Started
+                </b-button>
+              </router-link>
             </div>
           </div>
         </div>
@@ -217,7 +99,32 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
-  name: 'Shops'
+  name: 'Shops',
+  data () {
+    return {
+      isLoading: true,
+      mostPickedThisMonth: []
+    }
+  },
+  created () {
+    this.fetchMostPicked()
+  },
+  methods: {
+    async fetchMostPicked () {
+      this.isLoading = false
+      try {
+        const res = await axios.get('laundry_shop')
+
+        if (res && res.hasOwnProperty('data') && res.data.length) {
+          this.mostPickedThisMonth = res.data.slice(0, 5) // Limit only 4 Laundry Shops
+        }
+      } catch (error) {
+        this.$notify('danger', 'Something Bad Happened', error, { duration: 5000 })
+      }
+    }
+  }
 }
 </script>

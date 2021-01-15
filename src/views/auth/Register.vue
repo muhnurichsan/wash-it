@@ -34,9 +34,10 @@
               <input type="password" class="form-control" v-model="formData.password">
               <span>{{ $t('user.password') }}</span>
             </label>
-            <label class="form-group">
-              <b-form-checkbox value="admin" v-model="formData.isAdmin">as Owner?</b-form-checkbox>
-            </label>
+            <div class="form-group">
+              <input type="checkbox" value="admin" v-model="formData.isAdmin" id="asOwner" class="op-0">
+              <label for="asOwner">as Owner?</label>
+            </div>
             <div class="d-flex justify-content-between align-items-center">
               <router-link tag="a" to="/auth/login" class="text-dark">
                 {{ $t('user.login-title') }}

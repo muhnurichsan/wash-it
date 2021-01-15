@@ -3,7 +3,7 @@
     <router-view />
   </div>
 </template>
-<style>
+<style scoped>
 #landing-page {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

@@ -8,10 +8,10 @@
       >
         <div class="container">
           <div class="row">
-            <div class="col-lg-5">
+            <div class="col-lg-5 bg-caption">
               <span>Welcome to</span>
               <h1 class="text-white">WashIT</h1>
-              <p>
+              <p class="text-white">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore
               </p>
@@ -26,10 +26,10 @@
       >
         <div class="container">
           <div class="row">
-            <div class="col-lg-5">
+            <div class="col-lg-5 bg-caption">
               <span>WashIT</span>
               <h1 class="text-white">Black Friday</h1>
-              <p>
+              <p class="text-white">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore
               </p>
@@ -44,10 +44,10 @@
       >
         <div class="container">
           <div class="row">
-            <div class="col-lg-5">
+            <div class="col-lg-5 bg-caption">
               <span>WashIT</span>
               <h1>Black Friday</h1>
-              <p>
+              <p class="text-white">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore
               </p>
@@ -70,3 +70,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.bg-caption {
+  background-color: rgba(0, 0, 0, .5);
+  padding: 2em;
+}
+</style>

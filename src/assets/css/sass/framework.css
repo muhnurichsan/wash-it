@@ -942,20 +942,6 @@ input[type=radio]+label:before {
     white-space: nowrap;
 }
 
-.dropdown-toggle:after {
-    content: "\f107";
-    height: 100%;
-    vertical-align: top;
-    border: none;
-    font-size: 18px;
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    -webkit-transition: -webkit-transform 0.2s;
-    transition: -webkit-transform 0.2s;
-    transition: transform 0.2s;
-    transition: transform 0.2s, -webkit-transform 0.2s;
-}
-
 .dropdown-menu {
     margin-top: 0;
     margin-left: -20px;

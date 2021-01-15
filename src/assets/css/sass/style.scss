@@ -1,3 +1,5 @@
-@import 'variables.scss';
-@import 'framework.css';
-@import 'layout.scss';
+.home {
+  @import 'variables.scss';
+  @import 'framework.css';
+  @import 'layout.scss';
+}

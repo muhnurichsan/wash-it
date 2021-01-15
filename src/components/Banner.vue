@@ -73,9 +73,11 @@
               data-aos-delay="300"
               class="py-3"
           >
-            <b-button pill variant="outline-secondary">
-              <a href="#">Get Started</a>
-            </b-button>
+            <router-link to="/">
+              <b-button pill variant="outline-secondary">
+                Get Started
+              </b-button>
+            </router-link>
           </div>
           <div
               class="mx-auto mw-470 color-heading text-adaptive"
