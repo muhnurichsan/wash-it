@@ -5,8 +5,8 @@
         <div class="col-md-12 col-sm-6 col-sm-3">
           <div class="card h-1000 rounded">
             <div class="card-body">
-              <h3 class="text-center">Laundry Shop Name</h3>
-              <p class="text-center">Laundry Shop Location</p>
+              <h3 class="text-center">{{ laundryShop.name }}</h3>
+              <p class="text-center">{{ laundryShop.location }}</p>
               <div class="container">
                 <div class="row mb-md-5">
                   <div class="col-md-8">
@@ -59,7 +59,7 @@
                           />
                           <div class="media-body">
                             <h5 class="mt-0">Estimate</h5>
-                            <p class="mt-0">Media heading</p>
+                            <p class="mt-0">{{ laundryShop.estimate }} days</p>
                           </div>
                         </div>
                         <div class="media media-box">
@@ -70,7 +70,7 @@
                           />
                           <div class="media-body">
                             <h5 class="mt-0">Working Hours</h5>
-                            <p class="mt-0">Media heading</p>
+                            <p class="mt-0">{{ laundryShop.working_hours }} hours</p>
                           </div>
                         </div>
                         <div class="media media-box">
@@ -81,7 +81,7 @@
                           />
                           <div class="media-body">
                             <h5 class="mt-0">Advantages</h5>
-                            <p class="mt-0">Media heading</p>
+                            <p class="mt-0">{{ laundryShop.advantages }}</p>
                           </div>
                         </div>
                       </div>
@@ -93,7 +93,7 @@
                         <div class="d-flex flex-column text-left">
                           <h4>Booking Information</h4>
                           <table
-                              class="table table-borderless table-responsive mb-10"
+                              class="table table-borderless table-responsive mb-10 table-over"
                           >
                             <thead>
                             <tr>
@@ -108,7 +108,7 @@
                               <th scope="row">Contact</th>
 
                               <td colspan="3"></td>
-                              <td>0856734839</td>
+                              <td>{{ laundryShop.contact }}</td>
                             </tr>
                             <tr>
                               <th scope="row">Payment</th>
@@ -118,7 +118,7 @@
                             <tr>
                               <th scope="row">Price</th>
                               <td colspan="3"></td>
-                              <td>4000 / kg</td>
+                              <td>{{ laundryShop.price }} / kg</td>
                             </tr>
                             </tbody>
                           </table>
@@ -140,11 +140,31 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'Gallery',
   data () {
     return {
-      carts: []
+      isLoading: true,
+      laundryShop: {}
+    }
+  },
+  created () {
+    this.fetchLaundryShop()
+  },
+  methods: {
+    async fetchLaundryShop () {
+      this.isLoading = false
+      try {
+        const res = await axios.get('laundry_shop/' + this.$route.params.id)
+
+        if (res && res.hasOwnProperty('data')) {
+          this.laundryShop = res.data
+        }
+      } catch (error) {
+        this.$notify('danger', 'Something Bad Happened', error, { duration: 5000 })
+      }
     }
   }
 }
@@ -166,5 +186,8 @@ export default {
 
 .icons {
   width: 40px;
+}
+.table-over{
+  overflow: hidden;
 }
 </style>

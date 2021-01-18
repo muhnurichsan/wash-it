@@ -19,7 +19,7 @@
             <div class="logo">
               <router-link to="/">
                 <img
-                    src="@/assets/landing/img/logo_website_shayna.png"
+                    src="@/assets/landing/img/logo1.png"
                     alt=""
                 />
               </router-link>
@@ -129,8 +129,9 @@ export default {
 </script>
 
 <style scoped>
-.si-pic img {
-  width: 100px;
-  height: 100px;
+.inner-header img {
+  width: 150px;
+  height: 150px;
+  margin-top:-50px;
 }
 </style>

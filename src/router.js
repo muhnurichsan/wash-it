@@ -50,7 +50,7 @@ const routes = [
     beforeEnter: AuthUserRequired,
     children: [
       {
-        path: '/laundry_detail/',
+        path: '/laundry_detail/:id',
         name: 'LaundryDetail',
         props: true,
         component: () =>

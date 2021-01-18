@@ -13,9 +13,9 @@
           </div>
           <div class="pb-15 color-main f-32 bold">Simplicity</div>
           <div class="col-xl-9 color-heading f-18 medium op-7 text-adaptive">
-            <div>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
-              deserunt ipsam, minima laboriosam iste natus facere
+            <div class="text-justify">
+              We provide access using our system that is easily understood for all people,
+              with just a few clicks you can order
             </div>
           </div>
         </div>
@@ -25,9 +25,9 @@
           </div>
           <div class="pb-15 color-main f-32 bold">Thrift</div>
           <div class="col-xl-9 color-heading f-18 medium op-7 text-adaptive">
-            <div>
-              Many people begin practicing yoga as a way to cope with feelings
-              of anxiety.
+            <div class="text-justify">
+              save your money and your energy, because we provide a way for
+              those of you who want to live frugally and simply
             </div>
           </div>
         </div>
@@ -37,9 +37,9 @@
           </div>
           <div class="pb-15 color-main f-32 bold">Eazy and Fast</div>
           <div class="col-xl-9 color-heading f-18 medium op-7 text-adaptive">
-            <div>
-              After two weeks, participants had fewer symptoms of depression and
-              lower levels of cortisol.
+            <div class="text-justify">
+              The order that you give will be processed quickly and
+              the laundry process is delivered by a trusted courier
             </div>
           </div>
         </div>
@@ -65,7 +65,7 @@
               data-aos="fade-down"
               data-aos-delay="150"
           >
-            Free Shipping on Each Purchase
+            Free Shipping on First Purchase
           </h2>
           <div
               data-aos-duration="600"
@@ -85,8 +85,8 @@
               data-aos="fade-down"
               data-aos-delay="450"
           >
-            Free shipping is valid for qualifying orders of $99 or more <br/>
-            before taxes and after applicable discounts.
+            Free shipping is valid for qualifying orders of 12000 or more <br/>
+            no taxes needed and after applicable discounts.
           </div>
         </div>
       </div>

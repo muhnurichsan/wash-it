@@ -22,7 +22,7 @@
             />
           </router-link>
           <div class="mt-30 mt-lg-0 ml-30 pb-60 relative inner">
-            <router-link :to="'/laundry_detail/' + laundry.slug">
+            <router-link :to="'/laundry_detail/' + laundry.id">
               <span class="d-block f-22 semibold title text-dark">{{ laundry.name }}</span>
             </router-link>
             <div v-if="laundry.price" class="mb-15 f-14 semibold sp-20 color-heading price">
@@ -35,7 +35,7 @@
               {{ laundry.adventages || '' }}
             </div>
             <div class="mt-30 mt-lg-0 absolute d-flex flex-wrap align-items-baseline buttons">
-              <router-link :to="'/laundry_detail/' + laundry.slug">
+              <router-link :to="'/laundry_detail/' + laundry.id">
                 <b-button pill variant="success" class="mr-10" size="sm">
                   Booking Now
                 </b-button>
