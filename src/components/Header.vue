@@ -53,15 +53,15 @@
                   </b-button>
                   <div class="cart-hover">
                     <div class="select-button">
-                      <a href="/user" class="primary-btn checkout-btn mb-2"
-                      >Profil</a
+                      <router-link to="/history" class="primary-btn checkout-btn mb-2"
+                      >History</router-link
                       >
                       <a
                           href="#"
                           @click="signOut"
                           class="primary-btn view-card"
                       >
-                        Keluar
+                        Sign Out
                       </a>
                     </div>
                   </div>
