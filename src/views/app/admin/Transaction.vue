@@ -56,7 +56,7 @@ export default {
               address: `${val.address}, ${val.additional_info}`,
               date: dayjs(val.createdAt).format('DD MMMM YYYY'),
               status: val.transaction_status,
-              statusColor: 'warning'
+              statusColor: val.transaction_status === 'PENDING' ? 'warning' : 'danger' || val.transaction_status === 'SUCCESS' ? 'success' : 'danger'
             })
           })
         }

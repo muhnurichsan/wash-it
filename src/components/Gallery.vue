@@ -167,6 +167,11 @@ export default {
       } catch (error) {
         this.$notify('danger', 'Something Bad Happened', error, { duration: 5000 })
       }
+    },
+    booking () {
+      const parsed = JSON.stringify(this.laundryShop)
+      localStorage.setItem('laundrySelect', parsed)
+      this.$router.push({ path: '/order' })
     }
   }
 }

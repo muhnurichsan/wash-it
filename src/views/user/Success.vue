@@ -1,17 +1,18 @@
 <template>
   <div
-    class="d-flex success-checkout align-items-center justify-content-center"
+    class="container d-flex align-items-center justify-content-center"
   >
     <div class="col col-lg-4 text-center">
-      <img src="img/success-buy.png" alt="" width="294"/>
-      <h3 class="mt-4">Sukses Terbayar!</h3>
+      <img src="@/assets/landing/img/success-buy.png" alt="" width=" 294 "/>
+      <h2 class="mt-4">Success making your order</h2>
       <p class="mt-2">
-        Silakan tunggu update terbaru dari kami via email yang sudah Anda
-        daftarkan sebelumnya.
+        View and track your recent transaction by clicking this button
       </p>
-      <router-link to="/" class="primary-btn pd-cart mt-3">
-        Back to Home
-      </router-link>
+      <b-button variant="success">
+        <router-link to="/history" class="text-white">
+          Check Order
+        </router-link>
+      </b-button>
     </div>
   </div>
 </template>
@@ -22,5 +23,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.container{
+  margin-top: 100px;
+}
 </style>

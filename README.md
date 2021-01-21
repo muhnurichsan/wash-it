@@ -1,4 +1,4 @@
-# piaf-vue
+# Wash it
 
 ## Project setup
 ```
