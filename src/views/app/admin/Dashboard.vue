@@ -9,7 +9,7 @@
     <b-row>
       <b-colxx xxs="12" lg="6">
         <b-card class="mb-4" :title="'Detail Shop'">
-          <b-form @submit.prevent="onFormDataSubmit">
+          <b-form>
             <b-row>
 
               <b-colxx sm="6">
@@ -47,12 +47,24 @@
               </b-colxx>
             </b-row>
 
-            <b-button type="submit" variant="primary" class="mt-4" :disabled="isLoading">
+            <b-button type="submit" variant="primary" class="mt-4" :disabled="isLoading" @click="onFormDataSubmit()">
               <span v-if="isLoading">
                 <b-spinner type="grow" small></b-spinner>
               </span>
               <span v-else>Save</span>
             </b-button>
+          </b-form>
+        </b-card>
+      </b-colxx>
+      <b-colxx xxs="12" lg="6">
+        <b-card class="mb-4" :title="'Upload Shop Images'">
+          <b-form>
+            <b-row>
+              <b-colxx xxs="12">
+                <vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions" @vdropzone-file-added="fileAdded($event)"></vue-dropzone>
+                <b-button type="button" variant="primary" @click="uploadTheFile()" class="mt-3">Save Images</b-button>
+              </b-colxx>
+            </b-row>
           </b-form>
         </b-card>
       </b-colxx>
@@ -63,8 +75,12 @@
 <script>
 import axios from 'axios'
 import { mapGetters } from 'vuex'
+import VueDropzone from 'vue2-dropzone'
 
 export default {
+  components: {
+    VueDropzone
+  },
   data () {
     return {
       formData: {
@@ -75,6 +91,20 @@ export default {
         price: '',
         estimate: ''
       },
+      dropzoneOptions: {
+        url: 'https://httpbin.org/post',
+        thumbnailHeight: 160,
+        previewTemplate: this.dropzoneTemplate(),
+        headers: { 'My-Awesome-Header': 'header value' },
+        manuallyAddFile: true,
+        autoProcessQueue: false,
+        uploadMultiple: true,
+        maxFileSize: 200,
+        maxFiles: 4,
+        acceptedFiles: 'image/*'
+      },
+      form: new FormData(),
+      counter: 0,
       isLoading: false
     }
   },
@@ -106,6 +136,35 @@ export default {
       setTimeout(() => {
         this.isLoading = false
       }, 2000)
+    },
+    fileAdded (file) {
+      this.form.append(file[this.counter], file)
+      this.counter = this.counter + 1
+    },
+    uploadTheFile () {
+      this.form.append('laundryShopId', this.formData.id)
+      console.log(this.form)
+      // axios.post('/shop_image', this.form)
+    },
+    dropzoneTemplate () {
+      return `<div class="dz-preview dz-file-preview mb-3">
+                  <div class="d-flex flex-row "> <div class="p-0 w-30 position-relative">
+                      <div class="dz-error-mark"><span><i></i>  </span></div>
+                      <div class="dz-success-mark"><span><i></i></span></div>
+                      <div class="preview-container">
+                        <img data-dz-thumbnail class="img-thumbnail border-0" />
+                        <i class="simple-icon-doc preview-icon"></i>
+                      </div>
+                  </div>
+                  <div class="pl-3 pt-2 pr-2 pb-1 w-70 dz-details position-relative">
+                    <div> <span data-dz-name /> </div>
+                    <div class="text-primary text-extra-small" data-dz-size /> </div>
+                    <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                    <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                  </div>
+                  <a href="#" class="remove" data-dz-remove> <i class="glyph-icon simple-icon-trash"></i> </a>
+                </div>
+        `
     }
   }
 }

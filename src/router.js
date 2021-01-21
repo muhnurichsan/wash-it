@@ -44,18 +44,18 @@ const routes = [
       }]
   },
   {
+    path: '/laundry_detail/:id',
+    name: 'LaundryDetail',
+    props: true,
+    component: () =>
+        import (/* webpackChunkName: "user" */ './views/user/LaundryDetail.vue')
+  },
+  {
     path: '/user',
     component: () =>
       import (/* webpackChunkName: "user" */ './views/user/index'),
     beforeEnter: AuthUserRequired,
     children: [
-      {
-        path: '/laundry_detail/:id',
-        name: 'LaundryDetail',
-        props: true,
-        component: () =>
-          import (/* webpackChunkName: "user" */ './views/user/LaundryDetail.vue')
-      },
       {
         path: '/order',
         name: 'OrderForm',

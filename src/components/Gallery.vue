@@ -1,7 +1,7 @@
 <template>
   <header class="header-section h-1170">
     <div class="container">
-      <div class="inner-header">
+      <div class="inner-header p-0">
         <div class="col-md-12 col-sm-6 col-sm-3">
           <div class="card h-1000 rounded">
             <div class="card-body">
@@ -122,9 +122,11 @@
                             </tr>
                             </tbody>
                           </table>
-                          <b-button variant="primary">
-                            <router-link to="/order"> Booking Now</router-link>
-                          </b-button>
+                          <router-link to="/order">
+                            <b-button variant="primary" block>
+                              Booking Now
+                            </b-button>
+                          </router-link>
                         </div>
                       </div>
                     </div>
