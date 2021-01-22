@@ -1,14 +1,14 @@
 <template>
   <header class="header-section h-1170">
     <div class="container">
-      <div class="inner-header">
+      <div class="inner-header p-0">
         <div class="col-md-12 col-sm-6 col-sm-3">
           <div class="card h-1000 rounded">
             <div class="card-body">
               <h3 class="text-center">{{ laundryShop.name }}</h3>
               <p class="text-center">{{ laundryShop.location }}</p>
               <div class="container">
-                <div class="row mb-md-5">
+                <div class="row mb-md-5" v-if="laundryShop.shop_images.length !== 4">
                   <div class="col-md-8">
                     <img
                         src="@/assets/landing/img/laundry2.jpg"
@@ -31,6 +31,21 @@
                             alt=""
                             class="img-round"
                         />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-md-5" v-if="laundryShop.shop_images.length === 4">
+                  <div class="col-md-8">
+                    <div class="bg-image lg" :style="{'background-image': 'url('+ laundryShop.shop_images[0].photo +')'}"></div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="d-flex flex-column">
+                      <div class="h-200">
+                        <div class="bg-image md" :style="{'background-image': 'url('+ laundryShop.shop_images[1].photo +')'}"></div>
+                      </div>
+                      <div class="h-md-100 mt-35">
+                        <div class="bg-image md" :style="{'background-image': 'url('+ laundryShop.shop_images[2].photo +')'}"></div>
                       </div>
                     </div>
                   </div>
@@ -122,11 +137,11 @@
                             </tr>
                             </tbody>
                           </table>
-                          <b-button>
-                            <a href="#" @click="booking" >
+                          <router-link to="/order">
+                            <b-button variant="primary" block>
                               Booking Now
-                            </a>
-                          </b-button>
+                            </b-button>
+                          </router-link>
                         </div>
                       </div>
                     </div>
@@ -196,5 +211,22 @@ export default {
 }
 .table-over{
   overflow: hidden;
+}
+.bg-image {
+  position: relative;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 15px;
+}
+
+.bg-image.lg {
+  width: 672px;
+  height: 448px;
+}
+
+.bg-image.md {
+  width: 321px;
+  height: 213px;
 }
 </style>

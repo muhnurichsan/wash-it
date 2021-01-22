@@ -44,18 +44,18 @@ const routes = [
       }]
   },
   {
+    path: '/laundry_detail/:id',
+    name: 'LaundryDetail',
+    props: true,
+    component: () =>
+        import (/* webpackChunkName: "user" */ './views/user/LaundryDetail.vue')
+  },
+  {
     path: '/user',
     component: () =>
       import (/* webpackChunkName: "user" */ './views/user/index'),
     beforeEnter: AuthUserRequired,
     children: [
-      {
-        path: '/laundry_detail/:id',
-        name: 'LaundryDetail',
-        props: true,
-        component: () =>
-          import (/* webpackChunkName: "user" */ './views/user/LaundryDetail.vue')
-      },
       {
         path: '/order',
         name: 'OrderForm',
@@ -116,7 +116,10 @@ const routes = [
 const router = new Router({
   linkActiveClass: 'active',
   routes,
-  mode: 'history'
+  mode: 'history',
+  scrollBehavior (to, from, savedPosition) {
+    return { x: 0, y: 0 }
+  }
 })
 
 export default router

@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="container">
-      <div class="inner-header">
+      <div class="inner-header pb-0">
         <div class="row">
           <div class="col-lg-2 col-md-2">
             <div class="logo">
