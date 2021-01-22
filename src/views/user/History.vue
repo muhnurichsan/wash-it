@@ -82,7 +82,7 @@ export default {
     async changeStatusTransaction (id) {
       const con = confirm('you"ve got your laundry ?')
       if (con === true) {
-        const res = await axios.put('transaction/' + id,{ transaction_status: 'SUCCESS' })
+        const res = await axios.put('transaction/' + id, { transaction_status: 'SUCCESS' })
         if (res) {
           console.log(res)
           window.location.reload()
@@ -92,6 +92,5 @@ export default {
       }
     }
   }
-
 }
 </script>

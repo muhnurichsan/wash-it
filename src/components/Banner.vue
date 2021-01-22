@@ -53,24 +53,15 @@
         <div class="col-12 pt-70 pb-75 bg-light radius10 inner">
           <div
               class="mb-2 f-14 color-heading semibold text-uppercase sp-20 subtitle"
-              data-aos-duration="600"
-              data-aos="fade-down"
-              data-aos-delay="0"
           >
             Enjoy Our Serivces
           </div>
           <h2
               class="mb-40 small"
-              data-aos-duration="600"
-              data-aos="fade-down"
-              data-aos-delay="150"
           >
             Free Shipping on First Purchase
           </h2>
           <div
-              data-aos-duration="600"
-              data-aos="fade-down"
-              data-aos-delay="300"
               class="py-3"
           >
             <router-link to="/">
@@ -81,9 +72,6 @@
           </div>
           <div
               class="mx-auto mw-470 color-heading text-adaptive"
-              data-aos-duration="600"
-              data-aos="fade-down"
-              data-aos-delay="450"
           >
             Free shipping is valid for qualifying orders of 12000 or more <br/>
             no taxes needed and after applicable discounts.

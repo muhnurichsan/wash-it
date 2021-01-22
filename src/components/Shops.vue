@@ -1,25 +1,21 @@
 <template>
   <section class="ecommerce_18 bg-light pt-100 pb-70">
     <div class="container px-xl-0">
-      <h2 class="mb-40 small"
-          data-aos-duration="600"
-          data-aos="fade-down"
-          data-aos-delay="0">
+      <h2 class="mb-40 small">
         Most Picked This Month
       </h2>
-      <div class="row align-items-start align-items-lg-stretch products">
+      <div class="row align-items-start align-items-lg-stretch products" v-if="!isLoading">
         <div class="mt-30 mb-30 col-xl-6 col-lg-10 col-md-5 col-sm-6 d-lg-flex align-items-stretch product"
-             data-aos-duration="600"
-             data-aos="fade-down"
-             data-aos-delay="0"
              v-for="(laundry, index) in mostPickedThisMonth" :key="index" :id="laundry.id"
         >
           <router-link :to="'/laundry_detail/' + laundry.id" class="align-self-start flex-shrink-0 img_link">
-            <img srcset="i/ecommerce_18_product_1@2x.jpg 2x"
+            <img v-if="!laundry.shop_images.length"
+                srcset="i/ecommerce_18_product_1@2x.jpg 2x"
                  src="i/ecommerce_18_product_1.jpg"
                  alt=""
                  class="img-fluid radius10"
             />
+            <div v-if="laundry.shop_images.length" class="bg-image" :style="{'background-image': 'url('+laundry.shop_images[0].photo+')'}"></div>
           </router-link>
           <div class="mt-30 mt-lg-0 ml-30 pb-60 relative inner">
             <router-link :to="'/laundry_detail/' + laundry.id">
@@ -57,34 +53,17 @@
                   src="i/call_to_action_28_img.png"
                   class="mb-20 mb-md-0 img radius20"
                   alt=""
-                  data-aos-duration="600"
-                  data-aos="fade-down"
-                  data-aos-delay="0"
               />
               <div class="pl-25 inner">
-                <h2
-                    class="small"
-                    data-aos-duration="600"
-                    data-aos="fade-down"
-                    data-aos-delay="300"
-                >
+                <h2 class="small">
                   Start Cleaning Your Laundry Right Now
                 </h2>
-                <div
-                    class="f-22 color-heading text-adaptive"
-                    data-aos-duration="600"
-                    data-aos="fade-down"
-                    data-aos-delay="450"
-                >
+                <div class="f-22 color-heading text-adaptive">
                   it's free shipping for first purchase
                 </div>
               </div>
             </div>
-            <div
-                data-aos-duration="600"
-                data-aos="fade-down"
-                data-aos-delay="750"
-            >
+            <div>
               <router-link to="/">
                 <b-button pill variant="outline-secondary">
                   Get Started
@@ -114,17 +93,33 @@ export default {
   },
   methods: {
     async fetchMostPicked () {
-      this.isLoading = false
+      this.isLoading = true
       try {
         const res = await axios.get('laundry_shop')
 
         if (res && res.hasOwnProperty('data') && res.data.length) {
           this.mostPickedThisMonth = res.data.slice(0, 5) // Limit only 4 Laundry Shops
+          this.isLoading = false
         }
       } catch (error) {
         this.$notify('danger', 'Something Bad Happened', error, { duration: 5000 })
+        this.isLoading = false
       }
     }
   }
 }
 </script>
+
+<style scoped>
+.bg-image {
+  position: relative;
+  width: 270px;
+  height: 207px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: all 0.25s;
+  border-radius: 10px;
+  border: 1px solid #404040;
+}
+</style>

@@ -44,7 +44,7 @@
           <div class="row">
             <div class="col-lg-5 ">
               <span>WashIT</span>
-              <h1>Black Friday</h1>
+              <h1 class="text-white">Black Friday</h1>
               <p class="text-white">
                 Everything you need about cleaning clothes is right here, with easy and simple information
               </p>
