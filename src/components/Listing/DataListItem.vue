@@ -21,8 +21,19 @@
           <i class="simple-icon-calendar"/>
           {{ data.date }}
         </p>
-        <div class="w-15 w-sm-100">
+        <div class="w-10 w-sm-100">
           <b-badge pill :variant="data.statusColor">{{ data.status }}</b-badge>
+        </div>
+        <div class="w-10 w-sm-100">
+          <b-form-group :label="'laundry weight /kg'">
+            <p >{{ data.total }}</p>
+            </b-form-group>
+        </div>
+        <div class="w-10 w-sm-100">
+          <b-form-group :label="'laundry weight /kg'">
+            <b-form-input type="number" v-model="formData.transaction_total"/>
+            <b-button variant="primary" class="mt-3" @click="changeTransactionTotal(data.id)">Submit</b-button>
+          </b-form-group>
         </div>
       </div>
       <!--            <div class="custom-control custom-checkbox pl-1 align-self-center pr-4">-->
@@ -32,11 +43,29 @@
   </b-card>
 </template>
 <script>
+import axios from 'axios'
+
 export default {
   props: ['data'],
+  data () {
+    return {
+      formData: {
+        transaction_total: ''
+      }
+    }
+  },
   methods: {
     toggleItem (event, itemId) {
       this.$emit('toggle-item', event, itemId)
+    },
+    async changeTransactionTotal (id) {
+      const res = await axios.put('transaction/' + id, { transaction_total: this.formData.transaction_total })
+      if (res) {
+        console.log(res)
+        window.location.reload()
+      } else {
+        console.log('error')
+      }
     }
   }
 }

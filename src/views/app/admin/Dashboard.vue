@@ -122,7 +122,7 @@ export default {
         manuallyAddFile: true,
         autoProcessQueue: false,
         uploadMultiple: false,
-        maxFileSize: 200,
+        maxFileSize: 2500,
         maxFiles: 4,
         acceptedFiles: 'image/*'
       },

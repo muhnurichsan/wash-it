@@ -45,20 +45,31 @@ export default {
   methods: {
     async fetchData () {
       this.isLoading = true
+      if (localStorage.getItem('user')) {
+        try {
+          this.user = JSON.parse(localStorage.getItem('user'))
+        } catch (error) {
+          console.log(error)
+        }
+      }
       try {
         const res = await axios.get('transaction')
-        if (res && res.hasOwnProperty('data') && res.data.length) {
-          res.data.map((val) => {
-            this.items.push({
-              id: val.id,
-              title: val.customer_name,
-              phone: val.contact_person,
-              address: `${val.address}, ${val.additional_info}`,
-              date: dayjs(val.createdAt).format('DD MMMM YYYY'),
-              status: val.transaction_status,
-              statusColor: val.transaction_status === 'PENDING' ? 'warning' : 'danger' || val.transaction_status === 'SUCCESS' ? 'success' : 'danger'
-            })
-          })
+        if (res && res.hasOwnProperty('data')) {
+          res.data.reduce((filtered, val) => {
+            if (val.laundryShopId === this.user.laundryShopId) {
+              this.items.push({
+                id: val.id,
+                title: val.customer_name,
+                phone: val.contact_person,
+                address: `${val.address}, ${val.additional_info}`,
+                date: dayjs(val.createdAt).format('DD MMMM YYYY'),
+                total: val.transaction_total,
+                status: val.transaction_status,
+                statusColor: val.transaction_status === 'PENDING' ? 'warning' : 'danger' || val.transaction_status === 'SUCCESS' ? 'success' : 'danger'
+              })
+            }
+            return this.items
+          }, [])
         }
       } catch (error) {
         this.$notify('danger', 'Something Bad Happened', error, { duration: 5000 })
