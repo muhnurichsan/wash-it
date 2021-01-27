@@ -49,9 +49,12 @@
         </b-dropdown>
       </div>
     </div>
-    <router-link class="navbar-logo" tag="a" to="/app">
-      <span class="logo d-none d-xs-block"></span>
-      <span class="logo-mobile d-block d-xs-none"></span>
+    <router-link class="navbar-logo pt-3" tag="a" to="/app">
+      <img
+          src="@/assets/landing/img/logo2.png"
+          alt=""
+          class="w-100"
+      />
     </router-link>
 
     <div class="navbar-right">

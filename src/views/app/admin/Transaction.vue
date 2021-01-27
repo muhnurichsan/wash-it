@@ -49,7 +49,7 @@ export default {
         try {
           this.user = JSON.parse(localStorage.getItem('user'))
         } catch (error) {
-          console.log(error)
+          this.$notify('danger', 'Something Bad Happened', error, { duration: 5000 })
         }
       }
       try {

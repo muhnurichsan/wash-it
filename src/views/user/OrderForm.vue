@@ -6,7 +6,7 @@
     <section class="shopping-cart spad">
       <div class="container">
         <div class="row">
-          <div class="col-lg-8">
+          <div class="col-lg-6">
             <div class="row">
               <div class="col-lg-12"></div>
               <div class="col-lg-8">
@@ -66,7 +66,7 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-4">
+          <div class="col-lg-6">
             <div class="row">
               <div class="col-lg-12">
                 <div class="proceed-checkout text-left">
@@ -75,16 +75,17 @@
                       Laundry Shop Name<span>{{laundrySelect.name}}</span>
                     </li>
                     <li class="subtotal mt-3">
-                      Postal Fee / kilometer<span>4000</span>
+                      Postal Fee/km<span>Rp{{laundrySelect.postal_fee}}</span>
                     </li>
+                    <li class="subtotal mt-3">Location <span>{{laundrySelect.location}}</span></li>
+                    <li class="subtotal mt-3">Contact <span>{{laundrySelect.contact}}</span></li>
                     <li class="subtotal mt-3">Payment <span>COD</span></li>
+                    <li class="subtotal mt-3">Price/kg <span>Rp{{laundrySelect.price}}</span></li>
+                    <li class="subtotal mt-3">Estimate Day <span>{{laundrySelect.estimate}} day(s)</span></li>
                     <li class="subtotal mt-3">
-                      Courier Name <span>Shayna</span>
+                      Courier Name <span>{{laundrySelect.courier_name}}</span>
                     </li>
                   </ul>
-                  <router-link to="/history" class="proceed-btn"
-                  >Check Order</router-link
-                  >
                 </div>
               </div>
             </div>
@@ -101,6 +102,7 @@
 <script>
 import HeaderShayna from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
+import { mapGetters } from 'vuex'
 import axios from 'axios'
 
 export default {
@@ -112,38 +114,48 @@ export default {
   data () {
     return {
       order: {},
-      laundrySelect: {},
-      user: {}
+      laundrySelect: {}
+    }
+  },
+  computed: {
+    ...mapGetters(['currentUser'])
+  },
+  async created () {
+    Object.assign(this.order, { customer_name: this.currentUser.name })
+    let laundry = localStorage.getItem('laundrySelect')
+    if (laundry !== null && laundry.length) {
+      laundry = JSON.parse(laundry)
+      const { data } = await axios.get(`/laundry_shop/${laundry.id}`)
+      this.laundrySelect = data
     }
   },
   methods: {
     checkoutOrder: function () {
+      // eslint-disable-next-line camelcase
+      const { customer_name, contact_person, address, additional_info } = this.order
       let orderData = {
-        customer_name: this.order.customer_name,
-        contact_person: this.order.contact_person,
-        address: this.order.address,
-        additional_info: this.order.additional_info,
+        customer_name,
+        contact_person,
+        address,
+        additional_info,
         postal_fee: 4000,
         transaction_status: 'PENDING',
         laundryShopId: this.laundrySelect.id,
-        userId: this.user.id
+        userId: this.currentUser.id
       }
       axios
         .post('transaction', orderData)
         .then(() => {
           this.$router.push({ path: '/success' })
+          localStorage.removeItem('laundrySelect')
         })
-        .catch((err) => console.log(err))
-    }
-  },
-  mounted () {
-    if (localStorage.getItem('laundrySelect') && localStorage.getItem('user')) {
-      try {
-        this.laundrySelect = JSON.parse(localStorage.getItem('laundrySelect'))
-        this.user = JSON.parse(localStorage.getItem('user'))
-      } catch (e) {
-        localStorage.removeItem('carts')
-      }
+        .catch((error) => {
+          this.$notify('danger', 'Something Bad Happened', error, { duration: 5000 })
+
+          setTimeout(() => {
+            window.location.reload()
+          }, 2000)
+        })
     }
   }
 }

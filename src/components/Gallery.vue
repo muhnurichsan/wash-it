@@ -138,7 +138,7 @@
                             </tbody>
                           </table>
                           <router-link to="/order">
-                            <b-button variant="primary" block>
+                            <b-button variant="primary" block @click="booking">
                               Booking Now
                             </b-button>
                           </router-link>

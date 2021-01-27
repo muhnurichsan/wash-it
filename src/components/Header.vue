@@ -17,10 +17,11 @@
         <div class="row">
           <div class="col-lg-2 col-md-2">
             <div class="logo">
-              <router-link to="/">
+              <router-link to="/" class="pt-4">
                 <img
-                    src="@/assets/landing/img/logo1.png"
+                    src="@/assets/landing/img/logo2.png"
                     alt=""
+                    class="w-100 h-100"
                 />
               </router-link>
             </div>
