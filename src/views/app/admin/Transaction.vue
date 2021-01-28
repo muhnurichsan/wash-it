@@ -17,6 +17,7 @@
         <data-list-item
             :key="item.id"
             :data="item"
+            v-on:success="fetchData()"
             v-contextmenu:contextmenu
         />
       </b-colxx>
@@ -43,7 +44,8 @@ export default {
     this.fetchData()
   },
   methods: {
-    async fetchData () {
+    fetchData () {
+      this.items = []
       this.isLoading = true
       if (localStorage.getItem('user')) {
         try {
@@ -52,28 +54,35 @@ export default {
           this.$notify('danger', 'Something Bad Happened', error, { duration: 5000 })
         }
       }
-      try {
-        const res = await axios.get('transaction')
-        if (res && res.hasOwnProperty('data')) {
-          res.data.reduce((filtered, val) => {
-            if (val.laundryShopId === this.user.laundryShopId) {
-              this.items.push({
-                id: val.id,
-                title: val.customer_name,
-                phone: val.contact_person,
-                address: `${val.address}, ${val.additional_info}`,
-                date: dayjs(val.createdAt).format('DD MMMM YYYY'),
-                total: val.transaction_total,
-                status: val.transaction_status,
-                statusColor: val.transaction_status === 'PENDING' ? 'warning' : 'danger' || val.transaction_status === 'SUCCESS' ? 'success' : 'danger'
-              })
-            }
-            return this.items
-          }, [])
-        }
-      } catch (error) {
-        this.$notify('danger', 'Something Bad Happened', error, { duration: 5000 })
-      }
+
+      axios.get('transaction')
+        .then((res) => {
+          if (res && res.hasOwnProperty('data')) {
+            res.data.forEach((val) => {
+              if (val.laundryShopId === this.user.laundryShopId) {
+                this.items.push({
+                  id: val.id,
+                  title: val.customer_name,
+                  phone: val.contact_person,
+                  address: `${val.address}, ${val.additional_info}`,
+                  date: dayjs(val.createdAt).format('DD MMMM YYYY HH:mm'),
+                  total: val.transaction_total,
+                  status: val.transaction_status,
+                  price: val.laundry_shop.price,
+                  postal_fee: val.laundry_shop.postal_fee,
+                  statusColor: val.transaction_status === 'PENDING' ? 'warning' : '' || val.transaction_status === 'ON PROGRESS' ? 'secondary' : '' || val.transaction_status === 'SUCCESS' ? 'primary' : '' || val.transaction_status === 'COMPLETED' ? 'primary' : ''
+                })
+              }
+            })
+
+            this.items.sort((a, b) => {
+              return new Date(b.date) - new Date(a.date)
+            })
+          }
+        })
+        .catch((error) => {
+          this.$notify('danger', 'Something Bad Happened', error, { duration: 5000 })
+        })
 
       setTimeout(() => {
         this.isLoading = false

@@ -225,13 +225,15 @@ export default {
         hideHeaderClose: false,
         centered: true
       })
-        .then(async () => {
-          await axios.delete(`/shop_image/${imageId}`)
-          this.$notify('success', 'Success', 'Image has been successfully deleted!', { duration: 5000 })
-          await this.fetchData()
+        .then(async (value) => {
+          if (value) {
+            await axios.delete(`/shop_image/${imageId}`)
+            this.$notify('success', 'Success', 'Image has been successfully deleted!', { duration: 5000 })
+            await this.fetchData()
+          }
         })
         .catch((error) => {
-          this.$notify('danger', 'Something Bad Happened', error, { duration: 5000 })
+          this.$notify('danger', 'Error', error, { duration: 5000 })
         })
     },
     dropzoneTemplate () {

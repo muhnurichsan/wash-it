@@ -17,16 +17,24 @@
         <th scope="row">{{index + 1}}</th>
         <td>{{ transaction ? transaction.laundry_shop ? transaction.laundry_shop.name : '-' : '' }}</td>
         <td>{{ transaction ? transaction.createdAt ? dateFormat(transaction.createdAt) : '-' : '' }}</td>
-        <td>Rp{{ (transaction.transaction_total * (transaction ? transaction.laundry_shop ? transaction.laundry_shop.name : 0 : 0)) + transaction.postal_fee }}</td>
+        <td v-if="transaction && transaction.laundry_shop">
+          Rp <span>
+          {{ (Number(transaction.transaction_total) * Number(transaction.laundry_shop.price)) + Number(transaction.laundry_shop.postal_fee) }}
+        </span>
+        </td>
         <td v-if="transaction.transaction_status==='SUCCESS'">
-          <b-button variant="success" @click.prevent="changeStatusTransaction(transaction.id)" class="w-100">{{transaction.transaction_status}}</b-button>
+          <b-button id="button-success" size="sm" variant="outline-success" @click.prevent="changeStatusTransaction(transaction.id)">
+            {{transaction.transaction_status}}
+          </b-button>
         </td>
         <td v-if="transaction.transaction_status==='FAILED'">
-          <b-button variant="danger" @click.prevent="changeStatusTransaction(transaction.id)" class="w-100">{{transaction.transaction_status}}</b-button>
+          <b-button variant="danger" size="sm" @click.prevent="changeStatusTransaction(transaction.id)" class="w-100">{{transaction.transaction_status}}</b-button>
         </td>
-        <td v-if="transaction.transaction_status==='PENDING'">
-<!--          <b-button variant="warning" @click.prevent="changeStatusTransaction(transaction.id)" class="w-100">{{transaction.transaction_status}}</b-button>-->
-          <b-badge pill variant="primary">{{ transaction.transaction_status }}</b-badge>
+        <td v-if="transaction.transaction_status==='PENDING' || transaction.transaction_status === 'ON PROGRESS'">
+          <b-button size="sm" disabled :variant="transaction.transaction_status==='PENDING' ? 'warning' : 'secondary'">{{ transaction.transaction_status }}</b-button>
+        </td>
+        <td v-if="transaction.transaction_status==='COMPLETED'">
+          <b-button size="sm" disabled :variant="'success'">{{ transaction.transaction_status }}</b-button>
         </td>
       </tr>
 
@@ -73,31 +81,44 @@ export default {
       }
       this.isLoading = false
       try {
+        this.userTransactions = []
         const res = await axios.get('transaction')
 
         if (res && res.hasOwnProperty('data')) {
           this.userTransactions = res.data.filter(data => {
             return data.userId === this.user.id
           })
-          console.log(this.userTransactions)
         }
       } catch (error) {
         this.$notify('danger', 'Something Bad Happened', error, { duration: 5000 })
       }
     },
     async changeStatusTransaction (id) {
-      const con = confirm('you"ve got your laundry ?')
-      if (con === true) {
-        const res = await axios.put('transaction/' + id, { transaction_status: 'SUCCESS' })
-        if (res) {
-          console.log(res)
-          setTimeout(() => {
-            window.location.reload()
-          }, 2000)
-        } else {
-          console.log('error')
-        }
-      }
+      this.$bvModal.msgBoxConfirm('You have got your laundry?', {
+        title: 'Please Confirm',
+        size: 'sm',
+        buttonSize: 'sm',
+        okVariant: 'success',
+        okTitle: 'YES',
+        cancelTitle: 'NOT YET',
+        footerClass: 'p-2',
+        hideHeaderClose: false,
+        centered: true
+      })
+        .then(async (value) => {
+          if (value) {
+            const res = await axios.put('transaction/' + id, { transaction_status: 'COMPLETED' })
+            if (res) {
+              this.$notify('success', 'Success', 'Transaction has been successfully updated!', { duration: 5000 })
+            } else {
+              this.$notify('danger', 'Error', 'Something Bad Happened', { duration: 5000 })
+            }
+            await this.fetchLaundryShop()
+          }
+        })
+        .catch(() => {
+          this.$notify('danger', 'Error', 'Something Bad Happened', { duration: 5000 })
+        })
     }
   }
 }

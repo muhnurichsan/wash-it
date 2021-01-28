@@ -1,11 +1,11 @@
 <template>
   <b-row class="h-100">
-    <b-colxx xxs="12" md=10 class="mx-auto my-auto">
-      <b-card class="auth-card" no-body>
-        <div class="position-relative image-side ">
-          <p class=" text-white h2">Welcome to WashIt</p>
-          <p class="white mb-0"> Please use this form to register. <br/>If you are a member, please
-            <router-link tag="a" to="/auth/login" class="white">login</router-link>
+    <b-colxx xxs="12" md="8" class="mx-auto my-auto">
+      <b-card class="auth-card d-flex align-items-center" no-body>
+        <div class="position-relative p-4 text-black">
+          <h3>Welcome to WashIt</h3>
+          <p class="mb-0"> Please use this form to register. <br/>If you are a member, please
+            <router-link tag="a" to="/auth/login">login</router-link>
             .
           </p>
           <router-link to="/">
@@ -14,8 +14,16 @@
             </b-button>
           </router-link>
         </div>
-        <div class="form-side">
-          <router-link tag="a" to="/"><span class="logo-single"/></router-link>
+        <div class="p-4 w-60">
+          <router-link tag="a" to="/" class="d-flex">
+            <img
+              src="@/assets/landing/img/logo2.png"
+              alt=""
+              class="mx-auto"
+              height="100"
+              width="100"
+            />
+          </router-link>
           <h6 class="mb-4">{{ $t('user.register') }}</h6>
           <b-form @submit.prevent="formSubmit">
             <label class="form-group has-float-label mb-4">

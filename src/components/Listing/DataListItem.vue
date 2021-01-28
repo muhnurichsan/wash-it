@@ -1,8 +1,11 @@
 <template>
   <b-card :class="{'d-flex flex-row':true}" no-body>
+    <div class="position-relative">
+      <span :class="'badge position-absolute badge-top-left badge-'+ data.statusColor +' badge-pill'">{{ data.status }}</span>
+    </div>
     <div class="pl-2 d-flex flex-grow-1 min-width-zero">
       <div
-          class="card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
+        class="card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
         <router-link :to="`?p=${data.id}`" class="w-15 w-sm-100">
           <p class="list-item-heading mb-1 truncate text-capitalize">
             <i class="iconsminds-male mr-5"/>
@@ -21,18 +24,19 @@
           <i class="simple-icon-calendar"/>
           {{ data.date }}
         </p>
-        <div class="w-10 w-sm-100">
-          <b-badge pill :variant="data.statusColor">{{ data.status }}</b-badge>
+        <div v-if="data.total" class="w-10 w-sm-100">
+          <p class="">Weight: {{ data.total }}/kg</p>
+          <p class="">Price: Rp{{ data.price * data.total }}</p>
+          <p class="">Delivery: Rp{{ data.postal_fee }}</p>
+          <p class="font-weight-bold mb-0">Total: Rp{{ (Number(data.price * data.total) + Number(data.postal_fee)) }}</p>
+          <b-button v-if="data.status === 'ON PROGRESS'" variant="primary" size="sm" class="mt-3"
+                    @click="changeTransactionTotal(data)">Complete
+          </b-button>
         </div>
-        <div class="w-10 w-sm-100">
-          <b-form-group :label="'laundry weight /kg'">
-            <p >{{ data.total }}</p>
-            </b-form-group>
-        </div>
-        <div class="w-10 w-sm-100">
-          <b-form-group :label="'laundry weight /kg'">
+        <div v-if="!data.total" class="w-10 w-sm-100">
+          <b-form-group :label="'Laundry Weight /kg'">
             <b-form-input type="number" v-model="formData.transaction_total"/>
-            <b-button variant="primary" class="mt-3" @click="changeTransactionTotal(data.id)">Submit</b-button>
+            <b-button variant="primary" class="mt-3" @click="changeTransactionTotal(data)" size="sm">Submit</b-button>
           </b-form-group>
         </div>
       </div>
@@ -58,14 +62,25 @@ export default {
     toggleItem (event, itemId) {
       this.$emit('toggle-item', event, itemId)
     },
-    async changeTransactionTotal (id) {
-      const res = await axios.put('transaction/' + id, { transaction_total: this.formData.transaction_total })
-      if (res) {
-        console.log(res)
-        window.location.reload()
-      } else {
-        console.log('error')
+    changeTransactionTotal (data) {
+      let payload = {}
+
+      if (data.status === 'PENDING') {
+        Object.assign(payload, { transaction_status: 'ON PROGRESS', transaction_total: this.formData.transaction_total })
+      } else if (data.status === 'ON PROGRESS') {
+        Object.assign(payload, { transaction_status: 'SUCCESS' })
       }
+
+      axios.put('transaction/' + data.id, payload)
+        .then((res) => {
+          if (res) {
+            this.$notify('success', 'Success', 'Transactions has been updated', { duration: 5000 })
+            this.$emit('success')
+          }
+        })
+        .catch(() => {
+          this.$notify('danger', 'Error', 'Something Bad Happened', { duration: 5000 })
+        })
     }
   }
 }
